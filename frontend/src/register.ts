@@ -11,20 +11,25 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
   const userPassword = (document.getElementById("userPassword") as HTMLInputElement).value;
 
   //Gör en POST-request till servern
-  const response = await axios.post(
-    "http://localhost:3000/register",
-    {
-      username: userName,
-      email: userEmail,
-      password: userPassword,
-    },
-    {
-      withCredentials: true,
-    },
-  );
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/register",
+      {
+        username: userName,
+        email: userEmail,
+        password: userPassword,
+      },
+      {
+        withCredentials: true,
+      },
+    );
 
-  //Skicka tillbaka webbläsaren till startsidan där den kan logga in
-  location.href = "/";
+    console.log(response.data);
+    //Skicka tillbaka webbläsaren till startsidan där den kan logga in
+    location.href = "/";
+  } catch (error) {
+    alert("Registreringen misslyckades. Försök igen!");
+  }
 });
 
 //Lyssna klick på "Tillbaka till startsidan" leder till /
