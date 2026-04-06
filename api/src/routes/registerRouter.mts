@@ -1,6 +1,6 @@
 import express from "express";
 import { createUser } from "../controllers/registerController.mjs";
-import type { RegisterRequest } from "../../models/requests/registerRequest.mjs";
+import type { RegisterRequest } from "../models/requests/registerRequest.mjs";
 
 //Skapar routern med express
 export const registerRouter = express.Router();
