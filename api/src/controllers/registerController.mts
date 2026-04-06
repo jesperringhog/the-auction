@@ -16,9 +16,11 @@ export const createUser = async (request: RegisterRequest) => {
     password: hashedPassword,
   };
 
-  //Spara användarobjektet i databasen - (USER IMPORTERAS FRÅN USERSCHEMA)
+  //Spara användarobjektet i databasen
+  // (User - IMPORTERAS FRÅN USERSCHEMA)
   const theNewUser = await User.create(user);
 
-  //Skicka tillbaka den nya användaren till routern - (CONVERTTODTO IMPORTERAS FRÅN USERSCHEMA)
+  //Skicka tillbaka den nya användaren till routern
+  // (ConvertToDto - IMPORTERAS FRÅN USERSCHEMA)
   return convertToDto(theNewUser);
 };
