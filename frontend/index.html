@@ -7,7 +7,18 @@
     <title>frontend</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h2>Auktionssajten</h2>
+
+      <section id="buttonSection">
+        <!-- Denna sektion kanske kan döljas när man är inloggad, eller blir till "logga ut"-knapp som raderar cookies? -->
+        <button id="toRegisterPageBtn">Bli medlem</button>
+        <button id="toLoginPageBtn">Logga in</button>
+      </section>
+
+      <h3>Alla aktiva auktioner</h3>
+      <section id="auctions">Här kommer auktionerna synas sen</section>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
