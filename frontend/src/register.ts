@@ -26,3 +26,10 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
   //Skicka tillbaka webbläsaren till startsidan där den kan logga in
   location.href = "/";
 });
+
+//Lyssna klick på "Tillbaka till startsidan" leder till /
+document.getElementById("backToStart")?.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  location.href = "/";
+});
