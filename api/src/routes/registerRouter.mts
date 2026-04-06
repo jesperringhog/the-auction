@@ -1,4 +1,6 @@
 import express from "express";
+import { createUser } from "../controllers/registerController.mjs";
+import type { RegisterRequest } from "../../models/requests/registerRequest.mjs";
 
 //Skapar routern med express
 export const registerRouter = express.Router();
@@ -6,7 +8,7 @@ export const registerRouter = express.Router();
 //POST-request för att registrera användare
 registerRouter.post("/", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password }: RegisterRequest = req.body;
 
     //Enkel validering, vi kan avancera mer senare om vi har tid
     if (!username) {

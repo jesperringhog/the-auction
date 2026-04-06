@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import type { RegisterRequest } from "../../models/requests/registerRequest.mjs";
 
 //Skapa användaren - (REGISTERREQUEST IMPORTERAS FRÅN MODELS/REQUESTS/REGISTERREQUEST)
 export const createUser = async (request: RegisterRequest) => {
