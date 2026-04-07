@@ -7,7 +7,7 @@ import { Server } from "socket.io";
 import cookieParser from "cookie-parser";
 import cookie from "cookie";
 import { registerRouter } from "./routes/registerRouter.mjs";
-import loginRouter from "./routes/loginRouter.mjs";
+import { loginRouter } from "./routes/loginRouter.mjs";
 
 config();
 
