@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import "./style.css";
 import { createAuction, fetchAuctions, placeBid } from "./auction.ts";
 
@@ -15,6 +16,7 @@ document.getElementById("toLoginPageBtn")?.addEventListener("click", async (e) =
   location.href = "/login";
 });
 
+<<<<<<< HEAD
 // Hämta formulär
 const createForm = document.getElementById("createAuctionForm") as HTMLFormElement;
 createForm.addEventListener("submit", createAuction);
@@ -24,3 +26,7 @@ fetchAuctions();
 
 // Lägg placeBid globalt om knappar genereras dynamiskt
 (window as any).placeBid = placeBid;
+=======
+//Skapa socket
+const socket = io("http://localhost:3000", { withCredentials: true });
+>>>>>>> 216d0e6a3fdc8917a3e21849f28e35564a71035a
