@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import type { RegisterRequest } from "../models/requests/registerRequest.mjs";
-import User from "../models/User.mjs";
+import User, { convertToDto } from "../models/User.mjs";
 
 //Skapa användaren
 export const createUser = async (request: RegisterRequest) => {
@@ -21,6 +21,5 @@ export const createUser = async (request: RegisterRequest) => {
   const theNewUser = await User.create(user);
 
   //Skicka tillbaka den nya användaren till routern
-  // (convertToDto - IMPORTERAS FRÅN USERSCHEMA)
   return convertToDto(theNewUser);
 };
