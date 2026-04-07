@@ -52,7 +52,7 @@ function updateAuctionBid(auctionId: string, bid: number, userId: string) {
   if (currentBidP) currentBidP.textContent = `Aktuellt bud: ${bid} kr`;
 }
 
-// --- Skapa auktion via fetch (kan fortfarande användas) ---
+// --- Skapa auktion via fetch ---
 export async function createAuction(e: Event) {
   e.preventDefault();
 
@@ -79,7 +79,7 @@ export async function createAuction(e: Event) {
   }
 }
 
-// --- Lägg bud via WebSocket istället för fetch ---
+// --- Lägg bud via WebSocket ---
 export function placeBid(auctionId: string) {
   const bidAmount = parseFloat(prompt("Ange ditt bud:") || "0");
   if (!bidAmount || bidAmount <= 0) return;
