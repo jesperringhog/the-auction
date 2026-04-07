@@ -16,8 +16,36 @@
         <button id="toLoginPageBtn">Logga in</button>
       </section>
 
-      <h3>Alla aktiva auktioner</h3>
-      <section id="auctions">Här kommer auktionerna synas sen</section>
+      <h3>Skapa auktion</h3>
+      <section id="auctions">
+        <div id="auctionList">
+          <form id="createAuctionForm">
+            <label>
+              Titel:
+              <input type="text" id="title" required />
+            </label>
+            <label>
+              Beskrivning:
+              <textarea id="description"></textarea>
+            </label>
+            <label>
+              Startpris:
+              <input type="number" id="startPrice" required />
+            </label>
+            <label>
+              Sluttid:
+              <input type="datetime-local" id="endTime" required />
+            </label>
+            <button type="submit">Skapa auktion</button>
+          </form>
+        </div>
+      </section>
+      <h3>Aktiva auktioner</h3>
+      <section id="activeAuctions">
+        <div id="auctionList">
+          <!-- Här kommer de aktiva auktionerna att listas -->
+        </div>
+      </section>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
