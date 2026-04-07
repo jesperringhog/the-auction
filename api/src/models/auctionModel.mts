@@ -1,9 +1,10 @@
-import mongoose from "mongoose";
+import { Schema, model, Types } from 'mongoose';
 
-const bidSchema = new mongoose.Schema(
+const bidSchema = new Schema(
   {
     user: {
-      type: String,
+      type: Types.ObjectId,
+      ref: "User",
       required: true,
     },
     bid: {
@@ -14,7 +15,7 @@ const bidSchema = new mongoose.Schema(
   { timestamps: { createdAt: "time", updatedAt: false } },
 );
 
-const auctionSchema = new mongoose.Schema(
+const auctionSchema = new Schema(
   {
     title: {
       type: String,
@@ -29,18 +30,19 @@ const auctionSchema = new mongoose.Schema(
     },
     currentBid: {
       type: Number,
+      default: 0,
     },
     allBids: {
-      type: [bidSchema], //Historik för alla bud på en auktion
-      required: true,
+      type: [bidSchema],
+      default: [],
     },
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "User",
       required: true,
     },
     currentWinner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "User",
       default: null,
     },
@@ -56,6 +58,6 @@ const auctionSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Auction = mongoose.model("Auction", auctionSchema);
+const Auction = model("Auction", auctionSchema);
 
 export default Auction;
