@@ -30,7 +30,7 @@ loginRouter.post("/", async (req, res) => {
 
       res.cookie("login", token, {
         expires,
-        sameSite: "none", //tillåter cross-origin (frontend och backend på olika portar)
+        sameSite: "lax", //tillåter cross-origin (frontend och backend på olika portar)
         secure: false, //tillåter http
         httpOnly: true,
       });

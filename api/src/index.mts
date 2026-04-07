@@ -25,17 +25,17 @@ app.use(json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: frontendUrl,
+    origin: frontendUrl || "http://localhost:5173",
     credentials: true,
   }),
 );
 
+app.use("/register", registerRouter);
+app.use("/login", loginRouter);
+
 app.get("/ping", (_, res) => {
   res.status(200).json({ message: "App is alive" });
 });
-
-app.use("/register", registerRouter);
-app.use("/login", loginRouter);
 
 const server = createServer(app);
 
@@ -56,6 +56,11 @@ io.on("connection", async (socket) => {
   const cookies = cookie.parse(socket.handshake.headers.cookie || "");
   //Hittar vår login-cookie
   const loginCookie = cookies.login;
+
+  //Bara test
+  if (loginCookie) {
+    console.log("Du är nu inloggad, här är din cookie: ", loginCookie);
+  }
 
   //Lägga dessa funktioner i en separat fil och bara anropa dem här:
 
