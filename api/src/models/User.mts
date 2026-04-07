@@ -6,10 +6,6 @@ const userSchema = new mongoose.Schema({
     passwordHash: { type: String, required: true }
 });
 
-userSchema.methods.isValidPassword = async function(password) {
-    return await bcrypt.compare(password, this.passwordHash);
-};
-
 const User = mongoose.model('User', userSchema);
 
 export default User;
