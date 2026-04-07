@@ -5,9 +5,10 @@ import { config } from "dotenv";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
 import cookieParser from "cookie-parser";
-import cookie from "cookie";
 import { registerRouter } from "./routes/registerRouter.mjs";
 import { loginRouter } from "./routes/loginRouter.mjs";
+import { auctionRouter } from "./routes/auctionRouter.mjs";
+import { auth } from "./middleware/auth.mjs";
 
 config();
 
@@ -32,6 +33,7 @@ app.use(
 
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use("/auctions", auth, auctionRouter);
 
 app.get("/ping", (_, res) => {
   res.status(200).json({ message: "App is alive" });
@@ -77,5 +79,5 @@ server.listen(port, async () => {
   } catch (error) {
     console.error(error);
   }
-  console.log(`Api is running on port: ${port}, connected to database: ${mongoose.connection.name}`);
+  console.log(`Server is running on port: ${port}, connected to database: ${mongoose.connection.name}`);
 });
