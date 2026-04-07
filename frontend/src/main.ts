@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import "./style.css";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
@@ -13,3 +14,6 @@ document.getElementById("toLoginPageBtn")?.addEventListener("click", async (e) =
 
   location.href = "/login";
 });
+
+//Skapa socket
+const socket = io("http://localhost:3000", { withCredentials: true });
