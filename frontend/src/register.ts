@@ -25,8 +25,7 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
     );
 
     console.log(response.data);
-    //Skicka tillbaka webbläsaren till startsidan där den kan logga in
-    location.href = "/";
+    location.href = "/"; //Skicka tillbaka webbläsaren till startsidan där den kan logga in
   } catch (error) {
     alert("Registreringen misslyckades. Försök igen!");
   }
@@ -35,6 +34,5 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
 //Lyssna klick på "Tillbaka till startsidan" leder till /
 document.getElementById("backToStart")?.addEventListener("click", async (e) => {
   e.preventDefault();
-
   location.href = "/";
 });
