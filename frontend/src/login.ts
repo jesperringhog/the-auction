@@ -28,6 +28,7 @@ document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
       location.href = "/"; //Gå tillbaka till startsidan (eller om vi vill till nån annan sida?)
     }
   } catch (error) {
+    console.error(error);
     alert("Inloggningen misslyckades. Försök igen!");
   }
 });

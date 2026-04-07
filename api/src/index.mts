@@ -7,6 +7,7 @@ import { Server } from "socket.io";
 import cookieParser from "cookie-parser";
 import cookie from "cookie";
 import { registerRouter } from "./routes/registerRouter.mjs";
+import loginRouter from "./routes/loginRouter.mjs";
 
 config();
 
@@ -34,6 +35,7 @@ app.get("/ping", (_, res) => {
 });
 
 app.use("/register", registerRouter);
+app.use("/login", loginRouter);
 
 const server = createServer(app);
 
