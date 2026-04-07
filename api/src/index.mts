@@ -45,6 +45,25 @@ const io = new Server(server, {
   cookie: true,
 });
 
+//WEBSOCKETS:
+//Lyssna efter connections
+io.on("connection", async (socket) => {
+  console.log("A user connected: ", socket.id);
+
+  //Hittar alla cookies i klienten
+  const cookies = cookie.parse(socket.handshake.headers.cookie || "");
+  //Hittar vår login-cookie
+  const loginCookie = cookies.login;
+
+  //Lägga dessa funktioner i en separat fil och bara anropa dem här:
+
+  //Funktion 1 - skicka inloggningsstatus (och alla auktioner?) till frontend
+
+  //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
+
+  //Funktion 3 - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
+});
+
 server.listen(port, async () => {
   try {
     await mongoose.connect(mongoUri);
