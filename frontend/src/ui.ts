@@ -1,7 +1,7 @@
+import "./style.css";
+
 export function updateCurrentBid(auctionId: string, bid: number) {
-  const el = document.querySelector(
-    `#auction-${auctionId} .current-bid`
-  );
+  const el = document.querySelector(`#auction-${auctionId} .current-bid`);
 
   if (!el) return;
 
@@ -9,18 +9,18 @@ export function updateCurrentBid(auctionId: string, bid: number) {
 }
 
 export function renderBidHistory(auctionId: string, bids: any[]) {
-  const container = document.querySelector(
-    `#auction-${auctionId} .bid-history`
-  );
+  const container = document.querySelector(`#auction-${auctionId} .bid-history`);
 
   if (!container) return;
 
   container.innerHTML = bids
-    .map((b) => `
+    .map(
+      (b) => `
       <div class="bid-row">
         <span>${b.userId}</span>
         <span>${b.amount} kr</span>
       </div>
-    `)
+    `,
+    )
     .join("");
 }
