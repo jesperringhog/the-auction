@@ -9,6 +9,8 @@ import { registerRouter } from "./routes/registerRouter.mjs";
 import { loginRouter } from "./routes/loginRouter.mjs";
 import { auctionRouter } from "./routes/auctionRouter.mjs";
 import { auth } from "./middleware/auth.mjs";
+import cookie from "cookie";
+import { lookForEndedAuctions } from "./sockets/endAuction.mjs";
 
 config();
 
@@ -41,7 +43,7 @@ app.get("/ping", (_, res) => {
 
 const server = createServer(app);
 
-const io = new Server(server, {
+export const io = new Server(server, {
   cors: {
     origin: frontendUrl,
     credentials: true,
@@ -66,7 +68,8 @@ io.on("connection", async (socket) => {
 
   //Lägga dessa funktioner i en separat fil och bara anropa dem här:
 
-  //Funktion 1 - skicka inloggningsstatus (och alla auktioner?) till frontend
+  // sockets/endAuction.mts - Hitta auktioner nära sluttid och ändra status till avslutad:
+  lookForEndedAuctions();
 
   //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
 
