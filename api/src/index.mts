@@ -11,6 +11,7 @@ import { auctionRouter } from "./routes/auctionRouter.mjs";
 import { auth } from "./middleware/auth.mjs";
 import cookie from "cookie";
 import { lookForEndedAuctions } from "./sockets/endAuction.mjs";
+import { initJoinAuction } from "./sockets/joinAuction.mjs";
 
 config();
 
@@ -74,6 +75,7 @@ io.on("connection", async (socket) => {
   //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
 
   //Funktion 3 - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
+  initJoinAuction(socket);
 });
 
 server.listen(port, async () => {
