@@ -1,4 +1,5 @@
 import { Schema, model, Types } from 'mongoose';
+import { userSchema } from './User.mjs';
 
 const bidSchema = new Schema(
   {
@@ -37,8 +38,7 @@ const auctionSchema = new Schema(
       default: [],
     },
     owner: {
-      type: Types.ObjectId,
-      ref: "User",
+      type: {userSchema},
       required: true,
     },
     currentWinner: {

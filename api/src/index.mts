@@ -9,6 +9,7 @@ import { registerRouter } from "./routes/registerRouter.mjs";
 import { loginRouter } from "./routes/loginRouter.mjs";
 import { auctionRouter } from "./routes/auctionRouter.mjs";
 import { auth } from "./middleware/auth.mjs";
+import cookie from "cookie";
 
 config();
 
