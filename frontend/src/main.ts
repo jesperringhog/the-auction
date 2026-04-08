@@ -2,6 +2,7 @@ import { io } from "socket.io-client";
 import "./style.css";
 import { /* createAuction, fetchAuctions, placeBid,*/ updateCurrentBid, renderBidHistory } from "./ui.ts";
 import { endingAuctionsListener } from "./sockets/endAuction.ts";
+import { hideAuctionForm } from "./services/showAuctionForm.ts";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
@@ -15,6 +16,11 @@ document.getElementById("toLoginPageBtn")?.addEventListener("click", (e) => {
   e.preventDefault();
 
   location.href = "/login";
+});
+
+//Om användaren är inloggad, visas "skapa auktion"-sektionen
+window.addEventListener("DOMContentLoaded", () => {
+  hideAuctionForm();
 });
 
 /*
