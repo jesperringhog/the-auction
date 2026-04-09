@@ -6,6 +6,7 @@ import { hideAuctionForm } from "./services/showAuctionForm.ts";
 import { socketOnAuctions } from "./sockets/joinAuction.ts";
 import type { AuctionState } from "./models/AuctionState.ts";
 import { socketOnBidHistory } from "./sockets/bidHistory.ts";
+import { initPlaceBid } from "./sockets/placeBid.ts";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
@@ -58,6 +59,9 @@ socket.on("connect", () => {
 
   //Funktion som lyssnar efter endAuctions
   endingAuctionsListener(socket);
+
+  // Initiera placeBid listener 
+  initPlaceBid();
 });
 
 socket.on("newBid", (data: any) => {
