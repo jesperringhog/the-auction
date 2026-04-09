@@ -38,7 +38,8 @@ const auctionSchema = new Schema(
       default: [],
     },
     owner: {
-      type: {userSchema},
+      type: Types.ObjectId,
+      ref: "User",
       required: true,
     },
     currentWinner: {

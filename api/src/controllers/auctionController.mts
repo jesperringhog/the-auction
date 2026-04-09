@@ -3,14 +3,17 @@ import type { AuctionRequest } from "../models/requests/auctionRequest.mjs";
 import { convertToDto, type UserDbType } from "../models/User.mjs";
 import type { UserDto } from "../models/UserDto.mjs";
 
-export const createAuction = (req: AuctionRequest, user: UserDbType) =>
-  Auction.create({
+export const createAuction = async (req: AuctionRequest, user: UserDbType) => {
+  const newAuction = await Auction.create({
     title: req.title,
     description: req.description,
     startPrice: +req.startPrice,
     currentBid: 0,
-    owner: convertToDto(user),
+    owner: user._id,
     currentWinner: null,
-    endTime: req.endTime,
+    endTime: new Date(req.endTime),
     isActive: true,
   });
+
+  return newAuction.populate("owner", "username");
+}

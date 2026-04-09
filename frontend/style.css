@@ -95,6 +95,19 @@ button:focus-visible {
   }
 }
 
+.auction {
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.active {
+ background-color: lightgreen;
+}
+
+.ended {
+  background-color: lightpink;
+}
+
 .hide {
   display: none;
 }
