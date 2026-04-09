@@ -98,3 +98,7 @@ button:focus-visible {
 .hide {
   display: none;
 }
+
+.endedAuctionText {
+  color: red;
+}
