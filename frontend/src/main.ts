@@ -30,9 +30,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("createAuctionForm")?.addEventListener("submit", (e) => {
   e.preventDefault();
-  
+
   initAuctionForm();
-})
+});
 
 /*
 // Hämta formulär
@@ -49,15 +49,15 @@ fetchAuctions();
 //Skapa socket
 export const socket = io("http://localhost:3000", { withCredentials: true });
 
-//Variabel som behövs för att kommunicera mellan funktioner -> vilken auktion som är vald 
-const auctionState: AuctionState = { selectedAuction: ""};
+//Variabel som behövs för att kommunicera mellan funktioner -> vilken auktion som är vald
+const auctionState: AuctionState = { selectedAuction: "" };
 
 //Lyssna efter connections
 socket.on("connect", () => {
   console.log("Socket connected: ", socket.connected);
 
   //Socket-funktioner här
-  
+
   //Funktion som lyssnar efter vilka auktioner som finns och vilken auktion man vill ansluta till
   socketOnAuctions(socket, auctionState);
 
@@ -67,8 +67,8 @@ socket.on("connect", () => {
   //Funktion som lyssnar efter endAuctions
   endingAuctionsListener(socket);
 
-  // Initiera placeBid listener 
-  initPlaceBid();
+  // Initiera placeBid listener
+  initPlaceBid(socket);
 });
 
 socket.on("newBid", (data: any) => {
