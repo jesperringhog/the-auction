@@ -34,7 +34,7 @@
             </label>
             <label>
               Sluttid:
-              <input type="datetime-local" id="endTime" required />
+              <input type="date" id="endTime" required />
             </label>
             <button type="submit">Skapa auktion</button>
           </form>
@@ -42,15 +42,9 @@
       </section>
 
       <h3>Aktiva auktioner</h3>
-      <section id="activeAuctions">
-        <div id="auctionList">
-          <div id="auction-123">
-            <p class="current-bid">Aktuellt bud:</p>
-            <div id="bidContainer" class="bid-history"></div>
-            <button class="bid-btn">Lägg bud</button>
-          </div>
-        </div>
-      </section>
+      <section id="activeAuctions"></section>
+      <h3>Avslutade auktioner</h3>
+      <section id="endedAuctions"></section>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

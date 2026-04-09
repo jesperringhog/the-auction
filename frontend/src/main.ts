@@ -6,6 +6,7 @@ import { hideAuctionForm } from "./services/showAuctionForm.ts";
 import { socketOnAuctions } from "./sockets/joinAuction.ts";
 import type { AuctionState } from "./models/AuctionState.ts";
 import { socketOnBidHistory } from "./sockets/bidHistory.ts";
+import { initAuctionForm } from "./utils/initAuctionForm.ts";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
@@ -25,6 +26,12 @@ document.getElementById("toLoginPageBtn")?.addEventListener("click", (e) => {
 window.addEventListener("DOMContentLoaded", () => {
   hideAuctionForm();
 });
+
+document.getElementById("createAuctionForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  
+  initAuctionForm();
+})
 
 /*
 // Hämta formulär
