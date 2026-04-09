@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "@types/cookie": "^0.6.0",
-    "@types/socket.io-client": "^1.4.36",
     "typescript": "~5.9.3",
     "vite": "^7.3.2"
   },
