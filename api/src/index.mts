@@ -12,6 +12,7 @@ import { auth } from "./middleware/auth.mjs";
 import cookie from "cookie";
 import { lookForEndedAuctions } from "./sockets/endAuction.mjs";
 import { initJoinAuction } from "./sockets/joinAuction.mjs";
+import { sendAllAuctions } from "./sockets/sendAllAuctions.mjs";
 
 config();
 
@@ -69,12 +70,15 @@ io.on("connection", async (socket) => {
 
   //Lägga dessa funktioner i en separat fil och bara anropa dem här:
 
+  // sockets/sendAllAuctions.mts - Hämtar alla auktioner och skickar de till frontend
+  sendAllAuctions(socket);
+
   // sockets/endAuction.mts - Hitta auktioner nära sluttid och ändra status till avslutad:
   lookForEndedAuctions();
 
   //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
 
-  //Funktion 3 - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
+  // sockets/joinAuction.mts - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
   initJoinAuction(socket);
 });
 
