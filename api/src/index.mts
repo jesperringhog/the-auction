@@ -13,6 +13,7 @@ import cookie from "cookie";
 import { lookForEndedAuctions } from "./sockets/endAuction.mjs";
 import { initJoinAuction } from "./sockets/joinAuction.mjs";
 import { sendAllAuctions } from "./sockets/sendAllAuctions.mjs";
+import { initPlaceBid } from "./sockets/placeBid.mjs";
 
 config();
 
@@ -77,6 +78,8 @@ io.on("connection", async (socket) => {
   lookForEndedAuctions();
 
   //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
+
+  initPlaceBid(io, socket);
 
   // sockets/joinAuction.mts - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
   initJoinAuction(socket);
