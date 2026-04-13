@@ -1,5 +1,5 @@
 import { Schema, model, Types, type InferSchemaType } from 'mongoose';
-import { userSchema } from './User.mjs';
+import User, { userSchema } from './User.mjs';
 
 const bidSchema = new Schema(
   {
@@ -15,6 +15,8 @@ const bidSchema = new Schema(
   },
   { timestamps: { createdAt: "time", updatedAt: false } },
 );
+
+export type Bid = InferSchemaType<typeof bidSchema>;
 
 const auctionSchema = new Schema(
   {
