@@ -4,6 +4,6 @@ import type { Bid } from "../models/Bid";
 
 export const socketOnBidHistory = (socket: Socket) => {
   socket.on("bidHistory", (bids: Bid[]) => {
-    bids.forEach((bid) => createHtmlForBids(bid));
+    createHtmlForBids(bids);
   });
 };

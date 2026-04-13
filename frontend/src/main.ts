@@ -3,11 +3,11 @@ import "./style.css";
 import { /* createAuction, fetchAuctions, placeBid,*/ updateCurrentBid, renderBidHistory } from "./ui.ts";
 import { endingAuctionsListener } from "./sockets/endAuction.ts";
 import { hideAuctionForm } from "./services/showAuctionForm.ts";
-import { socketOnAuctions } from "./sockets/joinAuction.ts";
+import { socketOnAuctions } from "./sockets/showAuctions.ts";
 import type { AuctionState } from "./models/AuctionState.ts";
 import { socketOnBidHistory } from "./sockets/bidHistory.ts";
 import { initPlaceBid } from "./sockets/placeBid.ts";
-import { initAuctionForm } from "./utils/initAuctionForm.ts";
+import { initAuctionForm } from "./utils/auctionFormUtil.ts";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
