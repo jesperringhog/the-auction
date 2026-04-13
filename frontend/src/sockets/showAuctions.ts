@@ -6,9 +6,10 @@ import type { AuctionState } from "../models/AuctionState";
 export const socketOnAuctions = (socket: Socket, state: AuctionState) => {
   //lyssnar efter alla auktioner som finns i databasen
   socket.on("auctionList", (auctions: Auction[]) => {
+    state.auctions = auctions;
 
     //skapar html för alla auktioner som finns i databasen
     //skickar med socket och state för att kunna ansluta till vald auktion
-    createHtmlForAuctions(auctions, {socket, state});
-});
+    createHtmlForAuctions(auctions, { socket, state });
+  });
 };

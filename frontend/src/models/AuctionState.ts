@@ -1,3 +1,6 @@
+import type { Auction } from "./Auction";
+
 export type AuctionState = {
-    selectedAuction: string | null;
-}
+  selectedAuction: string | null;
+  auctions: Auction[];
+};
