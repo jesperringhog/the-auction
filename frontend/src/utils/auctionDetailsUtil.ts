@@ -18,7 +18,7 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
 
   auctionDetails.id = "auction-details";
   description.textContent = auction.description;
-  startPrice.textContent = `Startbud: ${auction.startPrice.toString()}kr`;
+  startPrice.textContent = `Utgångspris: ${auction.startPrice.toString()}kr`;
   owner.textContent = `Säljare: ${auction.owner.username}`;
   currentWinner.textContent = auction.currentWinner ? `Vinnare: ${auction.currentWinner.username}` : "Inga bud lagda";
   endTime.textContent = `Sluttid: ${time.toLocaleDateString()}${time.toLocaleTimeString()}`;

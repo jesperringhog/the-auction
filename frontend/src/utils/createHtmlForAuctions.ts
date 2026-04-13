@@ -14,7 +14,11 @@ export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionPro
 
     auction.className = "auction";
     title.textContent = a.title;
-    currentBid.textContent = `Senaste bud: ${a.currentBid.toString()}kr`;
+    if (a.isActive === false) {
+      currentBid.textContent = `Vinnande bud: ${a.currentBid.toString()}kr`;
+    } else {
+      currentBid.textContent = `Senaste bud: ${a.currentBid.toString()}kr`;
+    }
 
     const detailsContainer = document.createElement("div");
     detailsContainer.id = "details-container";

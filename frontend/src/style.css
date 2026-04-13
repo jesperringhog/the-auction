@@ -98,10 +98,11 @@ button:focus-visible {
 .auction {
   border-radius: 1rem;
   padding: 1rem;
+  width: 385px;
 }
 
 .active {
- background-color: lightgreen;
+  background-color: lightgreen;
 }
 
 .ended {
@@ -114,4 +115,18 @@ button:focus-visible {
 
 .endedAuctionText {
   color: red;
+}
+
+#activeAuctions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#endedAuctions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
 }
