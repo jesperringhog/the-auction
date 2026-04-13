@@ -1,10 +1,17 @@
 import type { Auction } from "../models/Auction";
 import { initAuctionDetails } from "./auctionDetailsUtil";
 import type { JoinAuctionProps } from "../models/JoinAuctionProps";
+import { joinAuction } from "../sockets/showAuctions";
 
 export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionProps) => {
   const activeAuctions = document.getElementById("activeAuctions");
   const endedAuctions = document.getElementById("endedAuctions");
+
+  if (!activeAuctions) return;
+  if (!endedAuctions) return;
+
+  activeAuctions.innerHTML = "";
+  endedAuctions.innerHTML = "";
 
   auctions.forEach((a) => {
     const auction = document.createElement("div");
@@ -23,7 +30,7 @@ export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionPro
     const detailsContainer = document.createElement("div");
     detailsContainer.id = "details-container";
 
-    const auctionDetails = initAuctionDetails(a, props.state);
+    const auctionDetails = initAuctionDetails(a, props);
     auctionDetails.classList.add("hide");
 
     connectBtn.addEventListener("click", () => {
@@ -33,6 +40,9 @@ export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionPro
         //genom loopen görs här en emit på titeln för auktionen som man klickar på -> för att ansluta till den
         props.socket.emit("joinAuction", a._id);
         props.state.selectedAuction = a._id;
+
+        //KOLLA IGENOM - från senaste commit - Jesper
+        // joinAuction(props, a);
       } else {
         connectBtn.textContent = connectBtn.textContent === "Visa" ? "Dölj" : "Visa";
       }
@@ -47,11 +57,11 @@ export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionPro
     if (a.isActive === true) {
       connectBtn.textContent = "Anslut";
       auction.classList.add("active");
-      activeAuctions?.appendChild(auction);
+      activeAuctions.appendChild(auction);
     } else {
       connectBtn.textContent = "Visa";
       auction.classList.add("ended");
-      endedAuctions?.appendChild(auction);
+      endedAuctions.appendChild(auction);
     }
   });
 };

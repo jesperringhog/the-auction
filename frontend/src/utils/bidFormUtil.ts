@@ -1,7 +1,7 @@
-import { socket } from "../main";
-import type { AuctionState } from "../models/AuctionState";
+import type { Bid } from "../models/Bid";
+import type { JoinAuctionProps } from "../models/JoinAuctionProps";
 
-export const initBidForm = (state: AuctionState) => {
+export const initBidForm = (props: JoinAuctionProps) => {
   const bidForm = document.createElement("form");
   const bidLabel = document.createElement("label");
   const bidInput = document.createElement("input");
@@ -12,11 +12,25 @@ export const initBidForm = (state: AuctionState) => {
   bidInput.placeholder = "123";
   bidBtn.textContent = "Lägg bud";
 
-  const userBid = (bidInput as HTMLInputElement).value;
+  let userBid = "";
 
   bidForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    socket.emit("newBid", { user: "", bid: userBid, time: new Date() }, state);
+    userBid = bidInput.value;
+
+    console.log("placeBid submit", {
+      selectedAuction: props.state.selectedAuction,
+      bid: userBid,
+    });
+
+    props.socket.emit(
+      "placeBid",
+      { user: {username: "", email: ""}, bid: +userBid, time: new Date() } satisfies Bid,
+      props.state.selectedAuction,
+    );
+    if (userBid) {
+      bidInput.value = "";
+    }
   });
 
   bidForm.appendChild(bidLabel);

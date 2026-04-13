@@ -7,6 +7,14 @@ export const initJoinAuction = (socket: Socket) => {
 
     const foundAuction = await Auction.findOne({ _id: auctionId });
 
+    //KOLLA IGENOM - från senaste commit - Jesper
+    // socket.emit("joinedAuction", auction);
+
+    // const foundAuction = await Auction.findOne({ title: auction }).populate(
+    //   "allBids.user",
+    //   "username email",
+    // );
+
     if (foundAuction) {
       socket.emit("bidHistory", foundAuction.allBids);
     }

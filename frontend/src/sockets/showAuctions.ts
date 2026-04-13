@@ -2,6 +2,7 @@ import type { Auction } from "../models/Auction";
 import { createHtmlForAuctions } from "../utils/createHtmlForAuctions";
 import type { Socket } from "socket.io-client";
 import type { AuctionState } from "../models/AuctionState";
+import type { JoinAuctionProps } from "../models/JoinAuctionProps";
 
 export const socketOnAuctions = (socket: Socket, state: AuctionState) => {
   //lyssnar efter alla auktioner som finns i databasen
@@ -13,3 +14,17 @@ export const socketOnAuctions = (socket: Socket, state: AuctionState) => {
     createHtmlForAuctions(auctions, { socket, state });
   });
 };
+
+//KOLLA IGENOM - från senaste commit - Jesper
+export const joinAuction = (props: JoinAuctionProps, auction: Auction) => {
+  props.socket.emit("joinAuction", auction.title);
+  props.state.selectedAuction = auction.title;
+
+  props.socket.on("joinedAuction", (auction) => {
+    console.log("Ansluten till auktion: ", auction);
+  })
+};
+
+
+
+
