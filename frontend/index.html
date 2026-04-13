@@ -34,17 +34,17 @@
             </label>
             <label>
               Sluttid:
-              <input type="date" id="endTime" required />
+              <input type="datetime-local" id="endTime" required />
             </label>
             <button type="submit">Skapa auktion</button>
           </form>
         </div>
       </section>
       <section id="auctionContainer">
-          <h3>Aktiva auktioner</h3>
-          <div id="activeAuctions"></div>
-          <h3>Avslutade auktioner</h3>
-          <div id="endedAuctions"></div>
+        <h3>Aktiva auktioner</h3>
+        <div id="activeAuctions"></div>
+        <h3>Avslutade auktioner</h3>
+        <div id="endedAuctions"></div>
       </section>
     </div>
     <script type="module" src="/src/main.ts"></script>

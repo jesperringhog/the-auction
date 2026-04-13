@@ -23,10 +23,10 @@ export const endingAuctionsListener = (socket: Socket, state: AuctionState) => {
 
 //Funktion som triggar igång omrendering av auktionsdetaljer efter avslutad auktion
 export const rerenderAuction = (auction: Auction, state: AuctionState) => {
-  const detailContainer = document.getElementById("details-container");
-  if (!detailContainer) return;
+  const oldAuctionDetails = document.querySelector(`[data-auction-id="${auction._id}"]`);
 
-  detailContainer.innerHTML = "";
-  const details = initAuctionDetails(auction, state);
-  detailContainer.appendChild(details);
+  if (!oldAuctionDetails) return;
+
+  const newAuctionDetails = initAuctionDetails(auction, state);
+  oldAuctionDetails.replaceWith(newAuctionDetails);
 };

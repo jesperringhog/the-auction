@@ -17,6 +17,7 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
   const bidContainer = createHtmlForBids(auction.allBids);
 
   auctionDetails.id = "auction-details";
+  auctionDetails.dataset.auctionId = auction._id;
   description.textContent = auction.description;
   startPrice.textContent = `Utgångspris: ${auction.startPrice.toString()}kr`;
   owner.textContent = `Säljare: ${auction.owner.username}`;
