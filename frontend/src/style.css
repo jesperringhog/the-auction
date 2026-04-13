@@ -130,3 +130,7 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.bold-text {
+  font-weight: bold;
+}

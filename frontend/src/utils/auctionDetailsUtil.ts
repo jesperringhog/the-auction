@@ -1,5 +1,6 @@
 import type { Auction } from "../models/Auction";
 import type { AuctionState } from "../models/AuctionState";
+import { startCountdown } from "./auctionCountdown";
 import { initBidForm } from "./bidFormUtil";
 import { createHtmlForBids } from "./bidHistoryUtil";
 
@@ -11,6 +12,7 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
   const currentWinner = document.createElement("p");
   const endTime = document.createElement("p");
   const time = new Date(auction.endTime);
+  const countdown = document.createElement("p");
 
   const bidForm = initBidForm(state);
 
@@ -23,8 +25,12 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
   owner.textContent = `Säljare: ${auction.owner.username}`;
   currentWinner.textContent = auction.currentWinner ? `Vinnare: ${auction.currentWinner.username}` : "Inga bud lagda";
   endTime.textContent = `Sluttid: ${time.toLocaleDateString()}${time.toLocaleTimeString()}`;
+  countdown.className = "bold-text";
 
-  if (!auction.isActive) {
+  if (auction.isActive) {
+    startCountdown(time, countdown);
+  } else {
+    countdown.textContent = "Sluttiden har passerat.";
     const endedText = document.createElement("h4");
     endedText.innerText = "Auktionen avslutad!";
     endedText.className = "endedAuctionText";
@@ -40,6 +46,7 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
   auctionDetails.appendChild(owner);
   auctionDetails.appendChild(currentWinner);
   auctionDetails.appendChild(endTime);
+  auctionDetails.appendChild(countdown);
   auctionDetails.appendChild(bidContainer);
 
   return auctionDetails;
