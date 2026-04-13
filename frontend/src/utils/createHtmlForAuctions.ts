@@ -1,6 +1,7 @@
 import type { Auction } from "../models/Auction";
 import { initAuctionDetails } from "./auctionDetailsUtil";
 import type { JoinAuctionProps } from "../models/JoinAuctionProps";
+import { joinAuction } from "../sockets/showAuctions";
 
 export const createHtmlForAuctions = (
   auctions: Auction[],
@@ -8,6 +9,12 @@ export const createHtmlForAuctions = (
 ) => {
   const activeAuctions = document.getElementById("activeAuctions");
   const endedAuctions = document.getElementById("endedAuctions");
+
+  if (!activeAuctions) return;
+  if (!endedAuctions) return;
+
+  activeAuctions.innerHTML = "";
+  endedAuctions.innerHTML = "";
 
   auctions.forEach((a) => {
     const auction = document.createElement("div");
@@ -19,7 +26,7 @@ export const createHtmlForAuctions = (
     title.textContent = a.title;
     currentBid.textContent = `Senaste bud: ${a.currentBid.toString()}kr`;
 
-    const auctionDetails = initAuctionDetails(a, props.state);
+    const auctionDetails = initAuctionDetails(a, props);
     auctionDetails.classList.add("hide");
 
     connectBtn.addEventListener("click", () => {
@@ -28,8 +35,7 @@ export const createHtmlForAuctions = (
         connectBtn.textContent =
           connectBtn.textContent === "Anslut" ? "Avbryt" : "Anslut";
         //genom loopen görs här en emit på titeln för auktionen som man klickar på -> för att ansluta till den
-        props.socket.emit("joinAuction", a.title);
-        props.state.selectedAuction = a.title;
+        joinAuction(props, a);
       } else {
         connectBtn.textContent =
           connectBtn.textContent === "Visa" ? "Dölj" : "Visa";
@@ -44,11 +50,11 @@ export const createHtmlForAuctions = (
     if (a.isActive === true) {
       connectBtn.textContent = "Anslut";
       auction.classList.add("active");
-      activeAuctions?.appendChild(auction);
+      activeAuctions.appendChild(auction);
     } else {
       connectBtn.textContent = "Visa";
       auction.classList.add("ended");
-      endedAuctions?.appendChild(auction);
+      endedAuctions.appendChild(auction);
     }
   });
 };

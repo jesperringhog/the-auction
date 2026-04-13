@@ -80,7 +80,7 @@ io.on("connection", async (socket) => {
   //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
 
   //EJ KLAR - under utveckling
-  initPlaceBid(io, socket);
+  initPlaceBid({io, socket, loginCookie});
 
   // sockets/joinAuction.mts - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
   initJoinAuction(socket);

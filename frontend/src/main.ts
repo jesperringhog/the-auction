@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import "./style.css";
-import { /* createAuction, fetchAuctions, placeBid,*/ updateCurrentBid, renderBidHistory } from "./ui.ts";
+// import { /* createAuction, fetchAuctions, placeBid,*/ updateCurrentBid, renderBidHistory } from "./ui.ts";
 import { endingAuctionsListener } from "./sockets/endAuction.ts";
 import { hideAuctionForm } from "./services/showAuctionForm.ts";
 import { socketOnAuctions } from "./sockets/showAuctions.ts";
@@ -70,12 +70,12 @@ socket.on("connect", () => {
   initPlaceBid(socket);
 });
 
-socket.on("newBid", (data: any) => {
-  const { auctionId, bid, bids } = data;
+// socket.on("newBid", (data: any) => {
+//   const { auctionId, bid, bids } = data;
 
-  // 1. Uppdatera current bid
-  updateCurrentBid(auctionId, bid);
+//   // 1. Uppdatera current bid
+//   updateCurrentBid(auctionId, bid);
 
-  // 2. Rendera om budhistoriken
-  renderBidHistory(auctionId, bids);
-});
+//   // 2. Rendera om budhistoriken
+//   renderBidHistory(auctionId, bids);
+// });

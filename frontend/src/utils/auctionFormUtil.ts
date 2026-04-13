@@ -1,12 +1,31 @@
 import { createAuction } from "../services/auctionService";
 
+let title = "";
+let description = "";
+let startPrice = 0;
+let userEndTime = "";
+
 export const initAuctionForm = async () => {
-    const title = (document.getElementById("title") as HTMLInputElement).value;
-    const description = (document.getElementById("description") as HTMLInputElement).value;
-    const startPrice = +(document.getElementById("startPrice") as HTMLInputElement).value;
-    const endTimeValue = (document.getElementById("endTime") as HTMLInputElement).value;
+  const titleInput = document.getElementById("title") as HTMLInputElement;
+  const descriptionInput = document.getElementById(
+    "description",
+  ) as HTMLInputElement;
+  const startPriceInput = document.getElementById("startPrice") as HTMLInputElement;
+  const endTimeInput = document.getElementById("endTime") as HTMLInputElement;
 
-    const endTime = new Date(endTimeValue);
+  title = titleInput.value;
+  description = descriptionInput.value;
+  startPrice = +startPriceInput.value;
+  userEndTime = endTimeInput.value;
 
-    await createAuction({title, description, startPrice, endTime}); 
-}
+  const endTime = new Date(userEndTime);
+  
+  await createAuction({ title, description, startPrice, endTime });
+
+  if (title && description && startPrice && userEndTime) {
+    titleInput.value = "";
+    descriptionInput.value = "";
+    startPriceInput.value = "";
+    endTimeInput.value = "";
+  }
+};

@@ -1,9 +1,8 @@
 import type { Auction } from "../models/Auction";
-import type { AuctionState } from "../models/AuctionState";
+import type { JoinAuctionProps } from "../models/JoinAuctionProps";
 import { initBidForm } from "./bidFormUtil";
-import { createHtmlForBids } from "./bidHistoryUtil";
 
-export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
+export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) => {
     const auctionDetails = document.createElement("div");
     const description = document.createElement("p");
     const startPrice = document.createElement("p");
@@ -11,10 +10,10 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
     const currentWinner = document.createElement("p");
     const endTime = document.createElement("p");
     const time = new Date(auction.endTime);
+    const bidHistoryHeading = document.createElement("h4");
+    const bidContainer = document.createElement("div");
 
-    const bidForm = initBidForm(state);
-
-    const bidContainer = createHtmlForBids(auction.allBids);
+    const bidForm = initBidForm(props);
 
     description.textContent = auction.description;
     startPrice.textContent = `Startbud: ${auction.startPrice.toString()}kr`;
@@ -23,6 +22,8 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
       ? `Vinnare: ${auction.currentWinner.username}`
       : "Inga bud lagda";
     endTime.textContent = `Sluttid: ${time.toLocaleDateString()}${time.toLocaleTimeString()}`;
+    bidHistoryHeading.textContent = "Budhistorik";
+    bidContainer.id = "bidContainer";
 
     auctionDetails.appendChild(description);
     auctionDetails.appendChild(startPrice);
@@ -30,6 +31,7 @@ export const initAuctionDetails = (auction: Auction, state: AuctionState) => {
     auctionDetails.appendChild(owner);
     auctionDetails.appendChild(currentWinner);
     auctionDetails.appendChild(endTime);
+    auctionDetails.appendChild(bidHistoryHeading);
     auctionDetails.appendChild(bidContainer);
 
     return auctionDetails;
