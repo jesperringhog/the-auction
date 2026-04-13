@@ -66,7 +66,6 @@ socket.on("connect", () => {
 
   //Funktion som lyssnar efter endAuctions
   endingAuctionsListener(socket);
-
   // Initiera placeBid listener
   initPlaceBid(socket);
 });
