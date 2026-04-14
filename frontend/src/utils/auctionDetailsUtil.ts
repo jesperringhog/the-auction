@@ -16,6 +16,12 @@ export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) =>
   const bidContainer = document.createElement("div");
 
   const bidForm = initBidForm(props);
+  const loggedIn = sessionStorage.getItem("loggedInUsersName");
+
+  if (!loggedIn) {
+    bidForm.querySelector("input")!.disabled = true;
+    bidForm.querySelector("button")!.disabled = true;
+  }
 
   auctionDetails.dataset.auctionId = auction._id;
   description.textContent = auction.description;

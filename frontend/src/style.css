@@ -197,7 +197,12 @@ button:focus-visible {
   transition: all 0.2s ease;
 }
 
-.auction button:hover {
+.auction button:not(:disabled):hover {
   background: #e6c9a8;
   color: #ffffff;
+}
+
+.auction button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

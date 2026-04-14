@@ -7,6 +7,7 @@ export const initBidForm = (props: JoinAuctionProps) => {
   const bidInput = document.createElement("input");
   const bidBtn = document.createElement("button");
 
+  bidForm.id = "bidForm";
   bidLabel.textContent = "Ange budsumma:";
   bidInput.type = "number";
   bidInput.placeholder = "123";
@@ -23,11 +24,7 @@ export const initBidForm = (props: JoinAuctionProps) => {
       bid: userBid,
     });
 
-    props.socket.emit(
-      "placeBid",
-      { user: {username: "", email: ""}, bid: +userBid, time: new Date() } satisfies Bid,
-      props.state.selectedAuction,
-    );
+    props.socket.emit("placeBid", { user: { username: "", email: "" }, bid: +userBid, time: new Date() } satisfies Bid, props.state.selectedAuction);
     if (userBid) {
       bidInput.value = "";
     }
