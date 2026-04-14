@@ -38,11 +38,8 @@ export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionPro
       if (a.isActive === true) {
         connectBtn.textContent = connectBtn.textContent === "Anslut" ? "Avbryt" : "Anslut";
         //genom loopen görs här en emit på titeln för auktionen som man klickar på -> för att ansluta till den
-        props.socket.emit("joinAuction", a._id);
-        props.state.selectedAuction = a._id;
 
-        //KOLLA IGENOM - från senaste commit - Jesper
-        // joinAuction(props, a);
+        joinAuction(props, a);
       } else {
         connectBtn.textContent = connectBtn.textContent === "Visa" ? "Dölj" : "Visa";
       }

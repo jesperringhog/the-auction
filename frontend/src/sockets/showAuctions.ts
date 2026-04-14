@@ -17,8 +17,8 @@ export const socketOnAuctions = (socket: Socket, state: AuctionState) => {
 
 //KOLLA IGENOM - från senaste commit - Jesper
 export const joinAuction = (props: JoinAuctionProps, auction: Auction) => {
-  props.socket.emit("joinAuction", auction.title);
-  props.state.selectedAuction = auction.title;
+  props.socket.emit("joinAuction", auction._id);
+  props.state.selectedAuction = auction._id;
 
   props.socket.on("joinedAuction", (auction) => {
     console.log("Ansluten till auktion: ", auction);

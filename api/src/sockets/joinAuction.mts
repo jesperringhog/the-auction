@@ -5,15 +5,12 @@ export const initJoinAuction = (socket: Socket) => {
   socket.on("joinAuction", async (auctionId: string) => {
     socket.join(auctionId);
 
-    const foundAuction = await Auction.findOne({ _id: auctionId });
+    const foundAuction = await Auction.findOne({ _id: auctionId }).populate(
+      "allBids.user",
+      "username email",
+    );
 
-    //KOLLA IGENOM - från senaste commit - Jesper
-    // socket.emit("joinedAuction", auction);
-
-    // const foundAuction = await Auction.findOne({ title: auction }).populate(
-    //   "allBids.user",
-    //   "username email",
-    // );
+    socket.emit("joinedAuction", foundAuction);
 
     if (foundAuction) {
       socket.emit("bidHistory", foundAuction.allBids);
