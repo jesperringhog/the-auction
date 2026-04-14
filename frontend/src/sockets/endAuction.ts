@@ -1,7 +1,6 @@
 import type { Socket } from "socket.io-client";
-import { initAuctionDetails } from "../utils/auctionDetailsUtil";
 import type { AuctionState } from "../models/AuctionState";
-import type { Auction } from "../models/Auction";
+import { rerenderAuction } from "../utils/rerenderAuctionUtil";
 
 //Funktion som lyssnar efter avslutade auktioner från backend
 export const endingAuctionsListener = (socket: Socket, state: AuctionState) => {
@@ -19,14 +18,4 @@ export const endingAuctionsListener = (socket: Socket, state: AuctionState) => {
 
     rerenderAuction(auction, socket, state);
   });
-};
-
-//Funktion som triggar igång omrendering av auktionsdetaljer efter avslutad auktion
-export const rerenderAuction = (auction: Auction, socket: Socket, state: AuctionState) => {
-  const oldAuctionDetails = document.querySelector(`[data-auction-id="${auction._id}"]`);
-
-  if (!oldAuctionDetails) return;
-
-  const newAuctionDetails = initAuctionDetails(auction, { socket, state });
-  oldAuctionDetails.replaceWith(newAuctionDetails);
 };
