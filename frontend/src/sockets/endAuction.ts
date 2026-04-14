@@ -17,16 +17,16 @@ export const endingAuctionsListener = (socket: Socket, state: AuctionState) => {
     auction.isActive = data.ended;
     auction.currentBid = data.currentBid;
 
-    rerenderAuction(auction, state);
+    rerenderAuction(auction, socket, state);
   });
 };
 
 //Funktion som triggar igång omrendering av auktionsdetaljer efter avslutad auktion
-export const rerenderAuction = (auction: Auction, state: AuctionState) => {
+export const rerenderAuction = (auction: Auction, socket: Socket, state: AuctionState) => {
   const oldAuctionDetails = document.querySelector(`[data-auction-id="${auction._id}"]`);
 
   if (!oldAuctionDetails) return;
 
-  const newAuctionDetails = initAuctionDetails(auction, state);
+  const newAuctionDetails = initAuctionDetails(auction, { socket, state });
   oldAuctionDetails.replaceWith(newAuctionDetails);
 };
