@@ -28,7 +28,7 @@ export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) =>
   bidContainer.id = "bidContainer";
 
   if (auction.isActive) {
-    startCountdown(time, countdown);
+    startCountdown(auction._id, time, countdown);
   } else {
     countdown.textContent = "Sluttiden har passerat.";
     const endedText = document.createElement("h4");
