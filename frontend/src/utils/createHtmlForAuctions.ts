@@ -53,11 +53,11 @@ export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionPro
 
     if (a.isActive === true) {
       connectBtn.textContent = "Anslut";
-      auction.classList.add("auction active");
+      auction.classList.add("auction-active");
       activeAuctions.appendChild(auction);
     } else {
       connectBtn.textContent = "Visa";
-      auction.classList.add("auction ended");
+      auction.classList.add("auction-ended");
       endedAuctions.appendChild(auction);
     }
   });
