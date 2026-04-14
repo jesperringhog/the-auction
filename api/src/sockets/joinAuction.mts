@@ -14,11 +14,12 @@ export const initJoinAuction = (socket: Socket) => {
 
     if (foundAuction) {
       socket.emit("bidHistory", foundAuction.allBids);
+      console.log(foundAuction.allBids); //
     }
-  });
 
-  socket.on("leaveAuction", (auctionId: string) => {
-    socket.leave(auctionId);
-    socket.emit("leftAuction", auctionId);
-  })
+    socket.on("leaveAuction", (auctionId: string) => {
+      socket.leave(auctionId);
+      socket.emit("leftAuction", foundAuction);
+    })
+  });
 };

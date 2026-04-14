@@ -42,7 +42,7 @@ updateAuthUI(); //Uppdatera login/register-knappar baserat på om man är inlogg
 export const socket = io("http://localhost:3000", { withCredentials: true });
 
 //Variabel som behövs för att kommunicera mellan funktioner -> vilken auktion som är vald
-const auctionState: AuctionState = { selectedAuction: "", auctions: [] };
+const auctionState: AuctionState = { selectedAuction: "", auctions: []};
 
 //Lyssna efter connections
 socket.on("connect", () => {
@@ -54,13 +54,13 @@ socket.on("connect", () => {
   socketOnAuctions(socket, auctionState);
 
   //Lyssnar efter existerande bud och skapar html för att visa dessa
-  socketOnBidHistory(socket);
+  socketOnBidHistory(socket, auctionState);
 
   //Funktion som lyssnar efter endAuctions
   endingAuctionsListener(socket, auctionState);
 
   // Initiera placeBid listener
-  initPlaceBid(socket);
+  initPlaceBid(socket, auctionState);
 });
 
 // socket.on("newBid", (data: any) => {
