@@ -9,6 +9,8 @@ import { socketOnBidHistory } from "./sockets/bidHistory.ts";
 import { initPlaceBid } from "./sockets/placeBid.ts";
 import { initAuctionForm } from "./utils/auctionFormUtil.ts";
 import type { JoinAuctionProps } from "./models/JoinAuctionProps.ts";
+import { updateAuthUI } from "./utils/updateAuthUI.ts";
+import "./logout";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
@@ -34,6 +36,8 @@ document.getElementById("createAuctionForm")?.addEventListener("submit", (e) => 
 
   initAuctionForm();
 });
+
+updateAuthUI(); //Uppdatera login/register-knappar baserat på om man är inloggad
 
 //Skapa socket
 export const socket = io("http://localhost:3000", { withCredentials: true });

@@ -14,6 +14,7 @@ import { lookForEndedAuctions } from "./sockets/endAuction.mjs";
 import { initJoinAuction } from "./sockets/joinAuction.mjs";
 import { sendAllAuctions } from "./sockets/sendAllAuctions.mjs";
 import { initPlaceBid } from "./sockets/placeBid.mjs";
+import { logoutRouter } from "./routes/logoutRouter.mjs";
 
 config();
 
@@ -39,6 +40,7 @@ app.use(
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/auctions", auth, auctionRouter);
+app.use("/logout", logoutRouter);
 
 app.get("/ping", (_, res) => {
   res.status(200).json({ message: "App is alive" });
@@ -80,7 +82,7 @@ io.on("connection", async (socket) => {
   //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
 
   //EJ KLAR - under utveckling
-  initPlaceBid({io, socket, loginCookie});
+  initPlaceBid({ io, socket, loginCookie });
 
   // sockets/joinAuction.mts - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
   initJoinAuction(socket);
