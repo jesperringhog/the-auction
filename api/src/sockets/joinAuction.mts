@@ -16,4 +16,9 @@ export const initJoinAuction = (socket: Socket) => {
       socket.emit("bidHistory", foundAuction.allBids);
     }
   });
+
+  socket.on("leaveAuction", (auctionId: string) => {
+    socket.leave(auctionId);
+    socket.emit("leftAuction", auctionId);
+  })
 };
