@@ -31,7 +31,7 @@ export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) =>
   endTime.textContent = `Sluttid: ${time.toLocaleDateString()} ${time.toLocaleTimeString()}`;
   countdown.className = "bold-text";
   bidHistoryHeading.textContent = "Budhistorik";
-  bidContainer.id = "bidContainer";
+  bidContainer.id = `bidContainer-${auction._id}`;
 
   if (auction.isActive) {
     startCountdown(auction._id, time, countdown);

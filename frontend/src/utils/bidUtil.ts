@@ -1,7 +1,7 @@
 import type { Bid } from "../models/Bid";
 
-export const createHtmlForBid = (bid: Bid) => {
-  const bidContainer = document.getElementById("bidContainer");
+export const createHtmlForBid = (bid: Bid, auctionId: string) => {
+  const bidContainer = document.getElementById(`bidContainer-${auctionId}`);
 
   const userTag = document.createElement("p");
   const bidTag = document.createElement("p");
