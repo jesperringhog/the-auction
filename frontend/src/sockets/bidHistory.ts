@@ -7,5 +7,7 @@ export const socketOnBidHistory = (socket: Socket) => {
     bids.forEach((bid) => {
       createHtmlForBid(bid);
     });
+    
+    socket.off("bidHistory");
   });
 };

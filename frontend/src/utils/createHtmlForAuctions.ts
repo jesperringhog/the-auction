@@ -1,9 +1,12 @@
 import type { Auction } from "../models/Auction";
 import { initAuctionDetails } from "./auctionDetailsUtil";
 import type { JoinAuctionProps } from "../models/JoinAuctionProps";
-import { joinAuction } from "../sockets/showAuctions";
+import { joinAuction, leaveAuction } from "../sockets/joinAuction";
 
-export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionProps) => {
+export const createHtmlForAuctions = (
+  auctions: Auction[],
+  props: JoinAuctionProps,
+) => {
   const activeAuctions = document.getElementById("activeAuctions");
   const endedAuctions = document.getElementById("endedAuctions");
 
@@ -36,12 +39,16 @@ export const createHtmlForAuctions = (auctions: Auction[], props: JoinAuctionPro
     connectBtn.addEventListener("click", () => {
       auctionDetails.classList.toggle("hide");
       if (a.isActive === true) {
-        connectBtn.textContent = connectBtn.textContent === "Anslut" ? "Avbryt" : "Anslut";
-        //genom loopen görs här en emit på titeln för auktionen som man klickar på -> för att ansluta till den
-
-        joinAuction(props, a);
+        connectBtn.textContent =
+          connectBtn.textContent === "Anslut" ? "Avbryt" : "Anslut";
+        if (connectBtn.textContent === "Avbryt") {
+          joinAuction(props, a);
+        } else {
+          leaveAuction(props, a);
+        }
       } else {
-        connectBtn.textContent = connectBtn.textContent === "Visa" ? "Dölj" : "Visa";
+        connectBtn.textContent =
+          connectBtn.textContent === "Visa" ? "Dölj" : "Visa";
       }
     });
 

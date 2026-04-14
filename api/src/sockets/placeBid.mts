@@ -52,7 +52,7 @@ import User from "../models/User.mjs";
 export const initPlaceBid = (props: SocketFunctionProps) => {
     props.socket.on("placeBid", async (bid: Bid, auction: string) => {
 
-        const foundAuction = await Auction.findOne({ title: auction});
+        const foundAuction = await Auction.findOne({ _id: auction});
 
         if (foundAuction && props.loginCookie) {
             const UserDto = jwt.decode(props.loginCookie) as UserDto;
@@ -65,7 +65,7 @@ export const initPlaceBid = (props: SocketFunctionProps) => {
 
             if (!foundAuction.isActive) return;
             if (bid.bid <= foundAuction.currentBid) return;
-            // if (foundAuction.owner.toString() === foundUser._id.toString()) return;
+            if (foundAuction.owner.toString() === foundUser._id.toString()) return;
 
             foundAuction.currentBid = bid.bid;
             foundAuction.currentWinner = foundUser._id;

@@ -19,6 +19,8 @@ import { createHtmlForBid } from "../utils/bidUtil.ts";
 
 export const initPlaceBid = (socket: Socket) => {
   socket.on("newBid", (newBid: Bid) => {
-      createHtmlForBid(newBid);
-    });
-}
+    console.log(`Nytt bud: ${newBid}kr`);
+
+    createHtmlForBid(newBid);
+  });
+};
