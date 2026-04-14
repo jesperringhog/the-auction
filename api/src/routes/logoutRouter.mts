@@ -2,7 +2,9 @@ import express from "express";
 
 export const logoutRouter = express.Router();
 
-logoutRouter.post("/", async (req, res) => {
+//Routern använder inte req, bara res
+logoutRouter.post("/", async (_, res) => {
+  //Tar bort login-cookien
   res.clearCookie("login", {
     sameSite: "lax",
     secure: false,
