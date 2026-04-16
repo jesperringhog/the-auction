@@ -48,8 +48,6 @@ const auctionState: AuctionState = { selectedAuction: "", auctions: [] };
 socket.on("connect", () => {
   console.log("Socket connected: ", socket.connected);
 
-  //Socket-funktioner här:
-
   //Funktion som lyssnar efter vilka auktioner som finns och vilken auktion man vill ansluta till
   socketOnAuctions(socket, auctionState);
 
@@ -62,13 +60,3 @@ socket.on("connect", () => {
   // Initiera placeBid listener
   initPlaceBid(socket, auctionState);
 });
-
-// socket.on("newBid", (data: any) => {
-//   const { auctionId, bid, bids } = data;
-
-//   // 1. Uppdatera current bid
-//   updateCurrentBid(auctionId, bid);
-
-//   // 2. Rendera om budhistoriken
-//   renderBidHistory(auctionId, bids);
-// });
