@@ -43,7 +43,7 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -71,18 +71,24 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+
+  padding: 8px 12px;
+
+  background: #ffffff;
+  color: #000000;
+
+  border: 1.5px solid #e6c9a8;
+  border-radius: 8px;
+
+  transition: all 0.2s ease;
 }
 button:hover {
-  border-color: black;
+  background: #e6c9a8;
+  color: #ffffff;
 }
 button:focus,
 button:focus-visible {
@@ -125,6 +131,7 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 16px;
   padding: 20px;
+  justify-content: center;
 }
 
 @keyframes pulse {

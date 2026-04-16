@@ -20,6 +20,7 @@ export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) =>
   const loggedIn = sessionStorage.getItem("loggedInUsersName");
 
   auctionDetails.dataset.auctionId = auction._id;
+  auctionDetails.className = "auctionDetails";
   description.textContent = auction.description;
   startPrice.textContent = `Utgångspris: ${auction.startPrice.toString()}kr`;
   owner.textContent = `Säljare: ${auction.owner.username}`;
