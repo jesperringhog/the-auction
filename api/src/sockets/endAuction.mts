@@ -1,5 +1,5 @@
 import { io } from "../index.mjs";
-import Auction from "../models/auctionModel.mjs";
+import Auction from "../models/AuctionModel.mjs";
 
 //Funktion som letar efter auktioner påväg att avslutas
 export const lookForEndedAuctions = () => {

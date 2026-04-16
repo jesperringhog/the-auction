@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import type { UserDto } from "../models/UserDto.mjs";
-import User from "../models/User.mjs";
+import User from "../models/UserModel.mjs";
 import type { AuthRequest } from "../models/requests/authRequest.mjs";
 
 export const auth = async (req: AuthRequest, res: Response, next: NextFunction) => {

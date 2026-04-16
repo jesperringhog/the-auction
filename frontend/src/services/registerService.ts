@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { RegisterResponse } from "../models/registerResponse";
+import type { RegisterResponse } from "../models/RegisterResponse";
 
 //Gör en POST-request till servern
 export const registerUser = async (registerResponse: RegisterResponse) => {
@@ -13,7 +13,7 @@ export const registerUser = async (registerResponse: RegisterResponse) => {
       },
       {
         withCredentials: true,
-      }
+      },
     );
 
     console.log(response.data);
@@ -22,4 +22,4 @@ export const registerUser = async (registerResponse: RegisterResponse) => {
   } catch (error) {
     alert("Registreringen misslyckades. Försök igen!");
   }
-}
+};

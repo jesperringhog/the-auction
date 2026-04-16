@@ -8,7 +8,7 @@ import { socketOnBidHistory } from "./sockets/bidHistory.ts";
 import { initPlaceBid } from "./sockets/placeBid.ts";
 import { initAuctionForm } from "./utils/auctionFormUtil.ts";
 import { updateAuthUI } from "./utils/updateAuthUI.ts";
-import "./services/logout.ts";
+import "./services/logoutService.ts";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {

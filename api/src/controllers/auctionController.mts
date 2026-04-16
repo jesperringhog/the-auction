@@ -1,7 +1,7 @@
 import { io } from "../index.mjs";
-import Auction from "../models/auctionModel.mjs";
+import Auction from "../models/AuctionModel.mjs";
 import type { AuctionRequest } from "../models/requests/auctionRequest.mjs";
-import { convertToDto, type UserDbType } from "../models/User.mjs";
+import { convertToDto, type UserDbType } from "../models/UserModel.mjs";
 import type { UserDto } from "../models/UserDto.mjs";
 
 export const createAuction = async (req: AuctionRequest, user: UserDbType) => {
@@ -16,9 +16,9 @@ export const createAuction = async (req: AuctionRequest, user: UserDbType) => {
     isActive: true,
   });
 
-  const populated = await newAuction.populate("owner", "username");  
+  const populated = await newAuction.populate("owner", "username");
 
   io.emit("auctionCreated", populated);
 
   return populated;
-}
+};
