@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import type { RegisterRequest } from "../models/requests/registerRequest.mjs";
-import User, { convertToDto } from "../models/User.mjs";
+import User, { convertToDto } from "../models/UserModel.mjs";
 
 //Skapa användaren
 export const createUser = async (request: RegisterRequest) => {

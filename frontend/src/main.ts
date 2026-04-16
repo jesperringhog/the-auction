@@ -1,6 +1,5 @@
 import { io } from "socket.io-client";
 import "./style.css";
-// import { /* createAuction, fetchAuctions, placeBid,*/ updateCurrentBid, renderBidHistory } from "./ui.ts";
 import { endingAuctionsListener } from "./sockets/endAuction.ts";
 import { hideAuctionForm } from "./services/showAuctionForm.ts";
 import { socketOnAuctions } from "./sockets/showAuctions.ts";
@@ -9,7 +8,7 @@ import { socketOnBidHistory } from "./sockets/bidHistory.ts";
 import { initPlaceBid } from "./sockets/placeBid.ts";
 import { initAuctionForm } from "./utils/auctionFormUtil.ts";
 import { updateAuthUI } from "./utils/updateAuthUI.ts";
-import "./services/logout.ts";
+import "./services/logoutService.ts";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
@@ -48,8 +47,6 @@ const auctionState: AuctionState = { selectedAuction: "", auctions: [] };
 socket.on("connect", () => {
   console.log("Socket connected: ", socket.connected);
 
-  //Socket-funktioner här:
-
   //Funktion som lyssnar efter vilka auktioner som finns och vilken auktion man vill ansluta till
   socketOnAuctions(socket, auctionState);
 
@@ -62,13 +59,3 @@ socket.on("connect", () => {
   // Initiera placeBid listener
   initPlaceBid(socket, auctionState);
 });
-
-// socket.on("newBid", (data: any) => {
-//   const { auctionId, bid, bids } = data;
-
-//   // 1. Uppdatera current bid
-//   updateCurrentBid(auctionId, bid);
-
-//   // 2. Rendera om budhistoriken
-//   renderBidHistory(auctionId, bids);
-// });

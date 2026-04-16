@@ -1,4 +1,4 @@
-import User, { convertToDto } from "../models/User.mjs";
+import User, { convertToDto } from "../models/UserModel.mjs";
 import bcrypt from "bcryptjs";
 import type { LoginRequest } from "../models/requests/loginRequest.mjs";
 

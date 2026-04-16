@@ -1,5 +1,4 @@
-import { Schema, model, Types, type InferSchemaType } from 'mongoose';
-import User, { userSchema } from './User.mjs';
+import { Schema, model, Types, type InferSchemaType } from "mongoose";
 
 const bidSchema = new Schema(
   {
