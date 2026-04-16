@@ -13,7 +13,7 @@ export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) =>
   const endTime = document.createElement("p");
   const time = new Date(auction.endTime);
   const countdown = document.createElement("p");
-  const bidHistoryHeading = document.createElement("h6");
+  const bidHistoryHeading = document.createElement("h3");
   const bidContainer = document.createElement("div");
 
   const bidForm = initBidForm(props, auction);
