@@ -18,10 +18,12 @@ export const createHtmlForAuctions = (
 
   auctions.forEach((a) => {
     const auction = document.createElement("div");
-    const title = document.createElement("h4");
-    const currentBid = document.createElement("p");
+    const title = document.createElement("h3");
+    const currentBid = document.createElement("h4");
     const connectBtn = document.createElement("button");
 
+    auction.dataset.auctionId = a._id; //
+    auction.id = `auction-${a._id}`; //
     auction.className = "auction";
     title.textContent = a.title;
     if (a.isActive === false) {

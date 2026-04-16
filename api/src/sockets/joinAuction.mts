@@ -11,7 +11,6 @@ export const initJoinAuction = (socket: Socket) => {
 
     if (foundAuction) {
       socket.emit("bidHistory", foundAuction.allBids);
-      console.log(foundAuction.allBids); //
     }
 
     socket.on("leaveAuction", (auctionId: string) => {

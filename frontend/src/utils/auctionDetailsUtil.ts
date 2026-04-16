@@ -9,11 +9,11 @@ export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) =>
   const startPrice = document.createElement("p");
   const owner = document.createElement("p");
   const warningText = document.createElement("p");
-  const currentWinner = document.createElement("p");
+  const currentWinner = document.createElement("h5");
   const endTime = document.createElement("p");
   const time = new Date(auction.endTime);
   const countdown = document.createElement("p");
-  const bidHistoryHeading = document.createElement("h4");
+  const bidHistoryHeading = document.createElement("h6");
   const bidContainer = document.createElement("div");
 
   const bidForm = initBidForm(props);
