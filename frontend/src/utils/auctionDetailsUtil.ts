@@ -16,7 +16,7 @@ export const initAuctionDetails = (auction: Auction, props: JoinAuctionProps) =>
   const bidHistoryHeading = document.createElement("h6");
   const bidContainer = document.createElement("div");
 
-  const bidForm = initBidForm(props);
+  const bidForm = initBidForm(props, auction);
   const loggedIn = sessionStorage.getItem("loggedInUsersName");
 
   auctionDetails.dataset.auctionId = auction._id;
