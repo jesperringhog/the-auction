@@ -11,7 +11,6 @@ export const initBidForm = (props: JoinAuctionProps, auction: Auction) => {
   bidForm.id = "bidForm";
   bidLabel.textContent = "Bud:";
   bidInput.type = "number";
-  bidInput.placeholder = `*Minst ${auction.currentBid + 1}kr`;
   bidBtn.textContent = "Lägg bud";
 
   if (auction.currentBid === 0) {
