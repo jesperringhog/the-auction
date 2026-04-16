@@ -17,9 +17,14 @@ export const initJoinAuction = (socket: Socket) => {
       console.log(foundAuction.allBids); //
     }
 
-    socket.on("leaveAuction", (auctionId: string) => {
-      socket.leave(auctionId);
-      socket.emit("leftAuction", foundAuction);
-    })
   });
+
+  socket.on("leaveAuction", async (auctionId: string) => {
+      socket.leave(auctionId);
+      const foundAuction = await Auction.findOne({_id: auctionId }).populate(
+        "allBids.user",
+        "username email",
+      );
+      socket.emit("leftAuction", foundAuction);
+    });
 };
