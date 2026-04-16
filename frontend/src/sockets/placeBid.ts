@@ -12,4 +12,9 @@ export const initPlaceBid = (socket: Socket, state: AuctionState) => {
 
     createHtmlForBid(newBid, auctionId);
   });
+
+  socket.on("bidError", (message) => {
+    console.log(message);
+    alert(message);
+  });
 };
