@@ -1,7 +1,8 @@
+import type { Auction } from "../models/Auction";
 import type { Bid } from "../models/Bid";
 import type { JoinAuctionProps } from "../models/JoinAuctionProps";
 
-export const initBidForm = (props: JoinAuctionProps) => {
+export const initBidForm = (props: JoinAuctionProps, auction: Auction) => {
   const bidForm = document.createElement("form");
   const bidLabel = document.createElement("label");
   const bidInput = document.createElement("input");
@@ -10,7 +11,7 @@ export const initBidForm = (props: JoinAuctionProps) => {
   bidForm.id = "bidForm";
   bidLabel.textContent = "Bud:";
   bidInput.type = "number";
-  bidInput.placeholder = "123";
+  bidInput.placeholder = `*Minst ${auction.currentBid + 1}kr`;
   bidBtn.textContent = "Lägg bud";
 
   let userBid = "";
