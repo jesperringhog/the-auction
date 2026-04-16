@@ -71,17 +71,13 @@ io.on("connection", async (socket) => {
     console.log("Du är nu inloggad, här är din cookie: ", loginCookie);
   }
 
-  //Lägga dessa funktioner i en separat fil och bara anropa dem här:
-
   // sockets/sendAllAuctions.mts - Hämtar alla auktioner och skickar de till frontend
   sendAllAuctions(socket);
 
   // sockets/endAuction.mts - Hitta auktioner nära sluttid och ändra status till avslutad:
   lookForEndedAuctions();
 
-  //Funktion 2 - lyssna efter nya bud på auktion, pusha till allBids, spara, emit:a tillbaks budet
-
-  //EJ KLAR - under utveckling
+  // sockets/placeBid.mts - lyssnar efter nya bud och skickar tillbaka dessa till alla användare
   initPlaceBid({ io, socket, loginCookie });
 
   // sockets/joinAuction.mts - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den

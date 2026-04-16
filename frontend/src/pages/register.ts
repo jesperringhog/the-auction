@@ -1,35 +1,28 @@
-import axios from "axios";
 import "/src/style.css";
+import { registerUser } from "../services/registerService";
+import { loginUser } from "../services/loginService";
 
 //Lyssna efter submit i registerForm
-document.getElementById("registerForm")?.addEventListener("submit", async (e) => {
-  e.preventDefault();
+document
+  .getElementById("registerForm")
+  ?.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  //Hitta användarens uppgifter i formuläret
-  const userName = (document.getElementById("userName") as HTMLInputElement).value;
-  const userEmail = (document.getElementById("userEmail") as HTMLInputElement).value;
-  const userPassword = (document.getElementById("userPassword") as HTMLInputElement).value;
+    //Hitta användarens uppgifter i formuläret
+    const username = (document.getElementById("userName") as HTMLInputElement)
+      .value;
+    const email = (document.getElementById("userEmail") as HTMLInputElement)
+      .value;
+    const password = (
+      document.getElementById("userPassword") as HTMLInputElement
+    ).value;
 
-  //Gör en POST-request till servern
-  try {
-    const response = await axios.post(
-      "http://localhost:3000/register",
-      {
-        username: userName,
-        email: userEmail,
-        password: userPassword,
-      },
-      {
-        withCredentials: true,
-      },
-    );
+    const registered = await registerUser({ username, email, password });
 
-    console.log(response.data);
-    location.href = "/"; //Skicka tillbaka webbläsaren till startsidan där den kan logga in
-  } catch (error) {
-    alert("Registreringen misslyckades. Försök igen!");
-  }
-});
+    if (registered) {
+      loginUser(email, password);
+    }
+  });
 
 //Lyssna klick på "Tillbaka till startsidan" leder till /
 document.getElementById("backToStart")?.addEventListener("click", async (e) => {
