@@ -2,7 +2,7 @@ import Auction, { type Bid } from "../models/AuctionModel.mjs";
 import jwt from "jsonwebtoken";
 import type { UserDto } from "../models/UserDto.mjs";
 import User from "../models/UserModel.mjs";
-import type { SocketFunctionProps } from "../models/socketFunctionProps.mjs";
+import type { SocketFunctionProps } from "../models/SocketFunctionProps.mjs";
 
 export const initPlaceBid = (props: SocketFunctionProps) => {
   props.socket.on("placeBid", async (bid: Bid, auction: string) => {
