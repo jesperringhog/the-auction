@@ -12,24 +12,11 @@ export const initJoinAuction = (socket: Socket) => {
     if (foundAuction) {
       socket.emit("bidHistory", foundAuction.allBids);
     }
-
-<<<<<<< HEAD
   });
 
   socket.on("leaveAuction", async (auctionId: string) => {
-      socket.leave(auctionId);
-      const foundAuction = await Auction.findOne({_id: auctionId }).populate(
-        "allBids.user",
-        "username email",
-      );
-      socket.emit("leftAuction", foundAuction);
-    });
-};
-=======
-    socket.on("leaveAuction", (auctionId: string) => {
-      socket.leave(auctionId);
-      socket.emit("leftAuction", foundAuction);
-    });
+    socket.leave(auctionId);
+    const foundAuction = await Auction.findOne({ _id: auctionId }).populate("allBids.user", "username email");
+    socket.emit("leftAuction", foundAuction);
   });
 };
->>>>>>> 94fbc744332a28fc378257190a8b66e7e33a999b
