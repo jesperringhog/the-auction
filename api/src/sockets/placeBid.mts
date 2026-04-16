@@ -17,12 +17,18 @@ export const initPlaceBid = (props: SocketFunctionProps) => {
 
       bid.user = foundUser._id;
 
-      if (!foundAuction.isActive) return;
-      if (bid.bid <= foundAuction.currentBid) {
-        props.io.to(auction).emit("bidError", "Budet måste vara högre än ledande bud");
+      if (!foundAuction.isActive) {
+        props.io.to(auction).emit("bidError", "Auktionen är redan avslutad!");
         return;
       }
-      if (foundAuction.owner.toString() === foundUser._id.toString()) return;
+      if (bid.bid <= foundAuction.currentBid) {
+        props.io.to(auction).emit("bidError", "Budet måste vara högre än ledande bud!");
+        return;
+      }
+      if (foundAuction.owner.toString() === foundUser._id.toString()) {
+        props.io.to(auction).emit("bidError", "Du kan inte buda på din egen auktion!");
+        return;
+      }
 
       foundAuction.currentBid = bid.bid;
       foundAuction.currentWinner = foundUser._id;
