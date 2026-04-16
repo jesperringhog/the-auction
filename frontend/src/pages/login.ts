@@ -1,6 +1,6 @@
 import axios from "axios";
-import "./style.css";
-import { updateAuthUI } from "./utils/updateAuthUI";
+import "/src/style.css";
+import { updateAuthUI } from "../utils/updateAuthUI";
 
 //Lyssna efter submit på "logga in"-formuläret
 document.getElementById("loginForm")?.addEventListener("submit", async (e) => {

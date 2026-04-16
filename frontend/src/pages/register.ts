@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./style.css";
+import "/src/style.css";
 
 //Lyssna efter submit i registerForm
 document.getElementById("registerForm")?.addEventListener("submit", async (e) => {

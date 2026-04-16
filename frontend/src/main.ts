@@ -9,7 +9,7 @@ import { socketOnBidHistory } from "./sockets/bidHistory.ts";
 import { initPlaceBid } from "./sockets/placeBid.ts";
 import { initAuctionForm } from "./utils/auctionFormUtil.ts";
 import { updateAuthUI } from "./utils/updateAuthUI.ts";
-import "./logout";
+import "./services/logout.ts";
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
@@ -42,7 +42,7 @@ updateAuthUI(); //Uppdatera login/register-knappar baserat på om man är inlogg
 export const socket = io("http://localhost:3000", { withCredentials: true });
 
 //Variabel som behövs för att kommunicera mellan funktioner -> vilken auktion som är vald
-const auctionState: AuctionState = { selectedAuction: "", auctions: []};
+const auctionState: AuctionState = { selectedAuction: "", auctions: [] };
 
 //Lyssna efter connections
 socket.on("connect", () => {
