@@ -9,6 +9,9 @@ import { initPlaceBid } from "./sockets/placeBid.ts";
 import { initAuctionForm } from "./utils/auctionFormUtil.ts";
 import { updateAuthUI } from "./utils/updateAuthUI.ts";
 import "./services/logoutService.ts";
+import { initUserStatus } from "./utils/userStatusUtil.ts";
+
+initUserStatus();
 
 //Lyssna klick på "bli medlem"-knappen leder till /register-sidan
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
