@@ -14,17 +14,42 @@ import type { AuctionState } from "../models/AuctionState.ts";
 //   });
 // }
 
+//ORGINALVERSIONEN nedanför
+
 // export function placeBid(auctionId: string, bidAmount: number, userId: string) {
 //   socket.emit("placeBid", { auctionId, bidAmount, userId });
 // }
 
+// export const initPlaceBid = (socket: Socket, state: AuctionState) => {
+ // socket.off("newBid");
+ // socket.off("bidError");
+
+ // socket.on("newBid", (newBid: Bid) => {
+//  console.log(`Nytt bud: ${newBid.bid}kr`);
+//    const auctionId = state.selectedAuction;
+//    if (!auctionId) return;
+//    createHtmlForBid(newBid, auctionId);
+//  });
+// };
+
+const handleNewBid = (state: AuctionState) => (newBid: Bid) => {
+  console.log(`Nytt bud: ${newBid.bid}kr`);
+
+  const auctionId = state.selectedAuction;
+  if (!auctionId) return;
+
+  createHtmlForBid(newBid, auctionId);
+};
+
+const handleBidError = (message: string) => {
+  console.log(message);
+  alert(message);
+};
+
 export const initPlaceBid = (socket: Socket, state: AuctionState) => {
-  socket.on("newBid", (newBid: Bid) => {
-    console.log(`Nytt bud: ${newBid.bid}kr`);
+socket.off("newBid");
+socket.off("bidError");
 
-    const auctionId = state.selectedAuction;
-    if (!auctionId) return;
-
-    createHtmlForBid(newBid, auctionId);
-  });
+socket.on("newBid", handleNewBid(state));
+socket.on("bidError", handleBidError);
 };
