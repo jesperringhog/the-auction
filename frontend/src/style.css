@@ -206,3 +206,17 @@ button:focus-visible {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+.bidRow:nth-child(even) {
+  background-color: #efe8dd;
+  padding: 10px;
+}
+
+.bidRow:nth-child(odd) {
+  background-color: white;
+  padding: 10px;
+}
+
+.bidRow p {
+  margin: 0;
+}
