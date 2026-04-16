@@ -14,6 +14,12 @@ export const initBidForm = (props: JoinAuctionProps, auction: Auction) => {
   bidInput.placeholder = `*Minst ${auction.currentBid + 1}kr`;
   bidBtn.textContent = "Lägg bud";
 
+  if (auction.currentBid === 0) {
+    bidInput.placeholder = `*Minst ${auction.startPrice + 1}kr`;
+  } else {
+    bidInput.placeholder = `*Minst ${auction.currentBid + 1}kr`;
+  }
+
   let userBid = "";
 
   bidForm.addEventListener("submit", (e) => {
