@@ -5,38 +5,40 @@ import type { UserDto } from "../models/UserDto.mjs";
 import User from "../models/User.mjs";
 
 export const initPlaceBid = (props: SocketFunctionProps) => {
-    props.socket.on("placeBid", async (bid: Bid, auction: string) => {
+  props.socket.on("placeBid", async (bid: Bid, auction: string) => {
+    const foundAuction = await Auction.findOne({ _id: auction });
 
-        const foundAuction = await Auction.findOne({ _id: auction});
+    if (foundAuction && props.loginCookie) {
+      const UserDto = jwt.decode(props.loginCookie) as UserDto;
 
-        if (foundAuction && props.loginCookie) {
-            const UserDto = jwt.decode(props.loginCookie) as UserDto;
-            
-            const foundUser = await User.findOne({ username: UserDto.username});
-            
-            if (!foundUser) return console.error(`User: ${UserDto.username} not found`);
+      const foundUser = await User.findOne({ username: UserDto.username });
 
-            bid.user = foundUser._id;
+      if (!foundUser) return console.error(`User: ${UserDto.username} not found`);
 
-            if (!foundAuction.isActive) return;
-            if (bid.bid <= foundAuction.currentBid) return;
-            if (foundAuction.owner.toString() === foundUser._id.toString()) return;
+      bid.user = foundUser._id;
 
-            foundAuction.currentBid = bid.bid;
-            foundAuction.currentWinner = foundUser._id;
-            foundAuction.allBids.push(bid);
+      if (!foundAuction.isActive) return;
+      if (bid.bid <= foundAuction.currentBid) {
+        props.io.to(auction).emit("bidError", "Budet måste vara högre än ledande bud");
+        return;
+      }
+      if (foundAuction.owner.toString() === foundUser._id.toString()) return;
 
-            await foundAuction.save();
+      foundAuction.currentBid = bid.bid;
+      foundAuction.currentWinner = foundUser._id;
+      foundAuction.allBids.push(bid);
 
-            const bidToEmit = {
-                user: { username: foundUser.username, email: foundUser.email },
-                bid: bid.bid,
-                time: bid.time,
-            }
-            
-            props.io.to(auction).emit("newBid", bidToEmit);
-        } else {
-            console.error(`Could not find auction: ${auction}`);
-        }
-    })
-}
+      await foundAuction.save();
+
+      const bidToEmit = {
+        user: { username: foundUser.username, email: foundUser.email },
+        bid: bid.bid,
+        time: bid.time,
+      };
+
+      props.io.to(auction).emit("newBid", bidToEmit);
+    } else {
+      console.error(`Could not find auction: ${auction}`);
+    }
+  });
+};

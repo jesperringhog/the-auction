@@ -1,6 +1,5 @@
 import { io } from "socket.io-client";
 import "./style.css";
-// import { /* createAuction, fetchAuctions, placeBid,*/ updateCurrentBid, renderBidHistory } from "./ui.ts";
 import { endingAuctionsListener } from "./sockets/endAuction.ts";
 import { hideAuctionForm } from "./services/showAuctionForm.ts";
 import { socketOnAuctions } from "./sockets/showAuctions.ts";
