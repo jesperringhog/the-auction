@@ -8,7 +8,7 @@ export const initBidForm = (props: JoinAuctionProps) => {
   const bidBtn = document.createElement("button");
 
   bidForm.id = "bidForm";
-  bidLabel.textContent = "Ange budsumma:";
+  bidLabel.textContent = "Bud:";
   bidInput.type = "number";
   bidInput.placeholder = "123";
   bidBtn.textContent = "Lägg bud";
