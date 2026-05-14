@@ -1,34 +1,100 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ejUKB3Wa)
-# Gruppuppgift - En auktion
+# The Auction
 
-Ni skall skapa en auktion-applikation med hjälp av websockets. En användare skall kunna registrera sig på sidan och sedan kunna skapa en (eller flera) auktion(er). En auktion är en sida som använder sig av websockets för att skicka bud och hålla reda på när auktionen går ut. 
+A real-time auction application built as a team project together with two other developers using Node.js, Express, MongoDB, TypeScript, and WebSockets.
 
-En användare måste vara inloggad för att kunna använda någon del av systemet.
+Users can create auctions, join live bidding sessions, and place bids with instant updates across connected clients — because auctions without real-time feedback are basically just very stressful online shopping.
 
-## Api:t
+## Features
 
-Ni skall bygga ett api med hjälp av node.js och express. Denna gång skall ni implementera websocket för att skapa en realtidskommunikation mellan servern och klienten. 
+- User registration and login system
+- Create and manage auctions
+- Real-time bidding with WebSockets
+- Live updates for:
+    - Incoming bids
+    - Leading bidder
+    - Auction status
+- Bid history with timestamps
+- Prevent users from bidding on their own auctions
+- Display auction owner and current highest bid
+- Dynamic frontend rendering using TypeScript
 
-Api:t skall ta emot anrop för att skapa en auktion och kunna ta emot bud samt hålla reda på när auktionen är slut och vem som vann.  
+## Tech Stack
 
-En användare skall kunna logga in. Detta betyder att ni behöver lagra användare i databasen så att ni kan slå upp dessa och logga in vid behov. 
+Backend
+- Node.js
+- Express
+- Mongo DB
 
-Ni behöver även kunna registrera användare. 
+Frontend
+- TypeScript (Vanilla)
+- SCSS
+- HTML
 
-## Klienten
+Deployment
+- Vercel
 
-Det finns ett projekt för er frontend i denna mall. Ni behöver göra det minsta möjliga i detta projekt för att få er auktions-site att fungera. 
+## My Contributions
 
-Klienten behöver även ha funktioner för att registrera användare och logga in användare. 
+The workload was shared fairly evenly across the team, but my main responsibilities included:
 
-## Betyg G
+- Implementing the create-auction flow
+- Connecting authenticated users to created auctions through middleware
+- Building and rendering auction-related UI components in TypeScript
+- Completing and refining the bid placement functionality
+- Handling frontend/backend communication for live bidding updates
+- Debugging and fixing issues across both frontend and backend
 
-- Ett api med node.js och express
-- Websockets är implementerat
-- Bra kodstruktur för websockets
-- Hantering av rum för websockets
-- En användare kan skapa en auktion
-- En användare kan lägga bud på en auktion (inte sin egen dock)
-- En användare kan se information om pågående auktion genom att gå in på auktions-sidan.
-- Inloggning av användare (cookies)
-- Registering av användare
+## Installation
+
+Clone the repository:
+```bash
+git clone https://github.com/jesperringhog/the-auction.git
+cd the-auction
+```
+Install dependencies:
+```bash
+npm install
+```
+Start the development environment:
+```bash
+npm run dev
+```
+
+## Project Structure
+
+- /api
+-   /controllers   – Route/controller logic   
+-   /middleware    – Authentication and middleware  
+-   /models        – MongoDB models  
+-   /routes        – Express routes  
+-   /sockets       – WebSocket handling  
+
+- /frontend  
+-   /models        – Frontend types/interfaces  
+-   /pages         – Application pages  
+-   /services      – API communication  
+-   /sockets       – Frontend socket handling  
+-   /utils         – Helper functions  
+
+
+## What I Learned
+
+- Working collaboratively in a full-stack team environment
+- Structuring communication between frontend and backend
+- Using WebSockets for real-time functionality
+- Managing shared state and live updates across clients
+- Debugging asynchronous features and event-driven flows
+- Building scalable Express route structures
+
+## Future Improvements
+
+- Refactor parts of the codebase for improved readability
+- Improve authorization and security handling
+- Add stronger validation for bids and auction creation
+- Improve UX with clearer feedback and error handling
+- Add responsive/mobile-first improvements
+- Implement automated testing
+
+## Repository
+
+https://github.com/jesperringhog/the-auction.git

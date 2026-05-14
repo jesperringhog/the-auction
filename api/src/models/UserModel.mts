@@ -9,10 +9,8 @@ export const userSchema = new Schema({
 
 const User = model("User", userSchema);
 
-//Skapar en typescript-typ baserat på userSchema
 export type UserDbType = InferSchemaType<typeof userSchema> & { _id: Types.ObjectId};
 
-//Gör om objekt från databasen till dto-objekt, för att ej skicka lösenord till frontend
 export const convertToDto = (dataFromDb: UserDbType): UserDto => {
   return {
     username: dataFromDb.username,

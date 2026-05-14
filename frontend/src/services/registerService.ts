@@ -1,7 +1,6 @@
 import axios from "axios";
-import type { RegisterResponse } from "../models/RegisterResponse";
+import type { RegisterResponse } from "../models/registerResponse";
 
-//Gör en POST-request till servern
 export const registerUser = async (registerResponse: RegisterResponse) => {
   try {
     const response = await axios.post(

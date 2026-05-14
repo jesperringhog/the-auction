@@ -9,7 +9,7 @@ export const joinAuction = (props: JoinAuctionProps, auction: Auction) => {
 
   props.socket.on("joinedAuction", (auction) => {
     console.log("Ansluten till auktion: ", auction);
-  })
+  });
 };
 
 export const leaveAuction = (props: JoinAuctionProps, auction: Auction) => {
@@ -20,5 +20,5 @@ export const leaveAuction = (props: JoinAuctionProps, auction: Auction) => {
 
   props.socket.on("leftAuction", (auction) => {
     console.log("Du lämnade auktionen: ", auction);
-  })
+  });
 };

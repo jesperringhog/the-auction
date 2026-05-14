@@ -9,7 +9,6 @@ loginRouter.post("/", async (req, res) => {
   const { email, password }: LoginRequest = req.body;
 
   try {
-    //Enkel validering, kan ändras om vi har tid
     if (!email) {
       return res.status(400).json({ message: "Missing email in body" });
     }
@@ -18,20 +17,17 @@ loginRouter.post("/", async (req, res) => {
       return res.status(400).json({ message: "Missing password in body" });
     }
 
-    //Logga in med controllern
     const userDto = await loginUser({ email, password });
 
-    //Om inloggningen gick bra
     if (userDto) {
-      //Sätt en cookie som gäller 1h vid namn "login"
       const token = jwt.sign(userDto, "login");
       const expires = new Date();
       expires.setHours(expires.getHours() + 1);
 
       res.cookie("login", token, {
         expires,
-        sameSite: "lax", //tillåter cross-origin (frontend och backend på olika portar)
-        secure: false, //tillåter http
+        sameSite: "lax", 
+        secure: false, 
         httpOnly: true,
       });
 

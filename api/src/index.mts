@@ -22,9 +22,14 @@ const port = process.env.PORT;
 const mongoUri = process.env.MONGO_URI;
 const frontendUrl = process.env.FRONTEND_URL;
 
-if (!port) throw new Error("PORT does not exist in .env, or it's value is invalid");
-if (!mongoUri) throw new Error("MONGO_URI does not exist in .env, or it's value is invalid");
-if (!frontendUrl) throw new Error("FRONTEND_URL does not exist in .env, or it's value is invalid");
+if (!port)
+  throw new Error("PORT does not exist in .env, or it's value is invalid");
+if (!mongoUri)
+  throw new Error("MONGO_URI does not exist in .env, or it's value is invalid");
+if (!frontendUrl)
+  throw new Error(
+    "FRONTEND_URL does not exist in .env, or it's value is invalid",
+  );
 
 const app = express();
 
@@ -56,31 +61,16 @@ export const io = new Server(server, {
   cookie: true,
 });
 
-//WEBSOCKETS:
-//Lyssna efter connections
 io.on("connection", async (socket) => {
   console.log("A user connected: ", socket.id);
 
-  //Hittar alla cookies i klienten
   const cookies = cookie.parse(socket.handshake.headers.cookie || "");
-  //Hittar vår login-cookie
+
   const loginCookie = cookies.login;
 
-  //Bara test
-  if (loginCookie) {
-    console.log("Du är nu inloggad, här är din cookie: ", loginCookie);
-  }
-
-  // sockets/sendAllAuctions.mts - Hämtar alla auktioner och skickar de till frontend
   sendAllAuctions(socket);
-
-  // sockets/endAuction.mts - Hitta auktioner nära sluttid och ändra status till avslutad:
   lookForEndedAuctions();
-
-  // sockets/placeBid.mts - lyssnar efter nya bud och skickar tillbaka dessa till alla användare
   initPlaceBid({ io, socket, loginCookie });
-
-  // sockets/joinAuction.mts - lyssna efter joinAuction, gå med i auktionen, hitta budhistoriken i DB och emit:a tillbaks den
   initJoinAuction(socket);
 });
 
@@ -90,5 +80,7 @@ server.listen(port, async () => {
   } catch (error) {
     console.error(error);
   }
-  console.log(`Server is running on port: ${port}, connected to database: ${mongoose.connection.name}`);
+  console.log(
+    `Server is running on port: ${port}, connected to database: ${mongoose.connection.name}`,
+  );
 });

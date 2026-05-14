@@ -1,10 +1,8 @@
 import axios from "axios";
 
-//Vid klick på logga ut-knappen
 document.getElementById("logoutBtn")?.addEventListener("click", async () => {
   console.log("clicked logout");
   try {
-    //Skickar req till backend för att ta bort cookie
     await axios.post(
       "http://localhost:3000/logout",
       {},
@@ -13,10 +11,8 @@ document.getElementById("logoutBtn")?.addEventListener("click", async () => {
       },
     );
 
-    //Ta bort inloggade användaren från sessionStorage
     sessionStorage.removeItem("loggedInUsersName");
 
-    //Uppdatera sidan
     location.href = "/";
   } catch (error) {
     console.error("Logout failed: ", error);

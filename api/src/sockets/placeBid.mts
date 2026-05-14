@@ -2,7 +2,7 @@ import Auction, { type Bid } from "../models/AuctionModel.mjs";
 import jwt from "jsonwebtoken";
 import type { UserDto } from "../models/UserDto.mjs";
 import User from "../models/UserModel.mjs";
-import type { SocketFunctionProps } from "../models/SocketFunctionProps.mjs";
+import type { SocketFunctionProps } from "../models/socketFunctionProps.mjs";
 
 export const initPlaceBid = (props: SocketFunctionProps) => {
   props.socket.on("placeBid", async (bid: Bid, auction: string) => {
@@ -13,7 +13,8 @@ export const initPlaceBid = (props: SocketFunctionProps) => {
 
       const foundUser = await User.findOne({ username: UserDto.username });
 
-      if (!foundUser) return console.error(`User: ${UserDto.username} not found`);
+      if (!foundUser)
+        return console.error(`User: ${UserDto.username} not found`);
 
       bid.user = foundUser._id;
 
@@ -22,11 +23,15 @@ export const initPlaceBid = (props: SocketFunctionProps) => {
         return;
       }
       if (bid.bid <= foundAuction.currentBid) {
-        props.io.to(auction).emit("bidError", "Budet måste vara högre än ledande bud!");
+        props.io
+          .to(auction)
+          .emit("bidError", "Budet måste vara högre än ledande bud!");
         return;
       }
       if (foundAuction.owner.toString() === foundUser._id.toString()) {
-        props.io.to(auction).emit("bidError", "Du kan inte buda på din egen auktion!");
+        props.io
+          .to(auction)
+          .emit("bidError", "Du kan inte buda på din egen auktion!");
         return;
       }
 
