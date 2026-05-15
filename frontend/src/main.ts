@@ -16,13 +16,13 @@ initUserStatus();
 document.getElementById("toRegisterPageBtn")?.addEventListener("click", (e) => {
   e.preventDefault();
 
-  location.href = "./register.html";
+  location.href = "/register.html";
 });
 
 document.getElementById("toLoginPageBtn")?.addEventListener("click", (e) => {
   e.preventDefault();
 
-  location.href = "./login.html";
+  location.href = "/login.html";
 });
 
 window.addEventListener("DOMContentLoaded", () => {
