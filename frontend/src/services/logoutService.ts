@@ -4,7 +4,7 @@ document.getElementById("logoutBtn")?.addEventListener("click", async () => {
   console.log("clicked logout");
   try {
     await axios.post(
-      "http://localhost:3000/logout",
+      `${import.meta.env.VITE_API_URL}/logout`,
       {},
       {
         withCredentials: true,

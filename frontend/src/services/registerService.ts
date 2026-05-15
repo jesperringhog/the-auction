@@ -4,7 +4,7 @@ import type { RegisterResponse } from "../models/registerResponse";
 export const registerUser = async (registerResponse: RegisterResponse) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/register",
+      `${import.meta.env.VITE_API_URL}/register`,
       {
         username: registerResponse.username,
         email: registerResponse.email,

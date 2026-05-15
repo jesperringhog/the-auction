@@ -4,7 +4,7 @@ import { updateAuthUI } from "../utils/updateAuthUI";
 export const loginUser = async (userEmail: string, userPassword: string) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/login",
+      `${import.meta.env.VITE_API_URL}/login`,
       {
         email: userEmail,
         password: userPassword,

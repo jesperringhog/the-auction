@@ -4,7 +4,7 @@ import type { ApiResponse } from "../models/ApiResponse";
 export const createAuction = async (apiRes: ApiResponse) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/auctions",
+      `${import.meta.env.VITE_API_URL}/auctions`,
       {
         title: apiRes.title,
         description: apiRes.description,
