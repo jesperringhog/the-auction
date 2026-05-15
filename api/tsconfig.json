@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "target": "esnext",
-    "allowImportingTsExtensions": true,
+    // "allowImportingTsExtensions": true,
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -22,7 +22,7 @@
     "declarationMap": true,
 
     // Ensure allowing import of .ts extensions is valid
-    "emitDeclarationOnly": true,
+    // "emitDeclarationOnly": true,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,

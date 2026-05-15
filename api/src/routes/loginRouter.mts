@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import type { LoginRequest } from "../models/requests/loginRequest.mts";
-import { loginUser } from "../controllers/loginController.mts";
+import type { LoginRequest } from "../models/requests/loginRequest.mjs";
+import { loginUser } from "../controllers/loginController.mjs";
 
 export const loginRouter = express.Router();
 

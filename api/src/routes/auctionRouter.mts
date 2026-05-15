@@ -1,7 +1,7 @@
 import express from "express";
-import { createAuction } from "../controllers/auctionController.mts";
-import type { AuctionRequest } from "../models/requests/auctionRequest.mts";
-import type { AuthRequest } from "../models/requests/authRequest.mts";
+import { createAuction } from "../controllers/auctionController.mjs";
+import type { AuctionRequest } from "../models/requests/auctionRequest.mjs";
+import type { AuthRequest } from "../models/requests/authRequest.mjs";
 
 export const auctionRouter = express.Router();
 

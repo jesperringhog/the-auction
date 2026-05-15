@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import type { UserDto } from "../models/UserDto.mts";
-import User from "../models/UserModel.mts";
-import type { AuthRequest } from "../models/requests/authRequest.mts";
+import type { UserDto } from "../models/UserDto.mjs";
+import User from "../models/UserModel.mjs";
+import type { AuthRequest } from "../models/requests/authRequest.mjs";
 import { config } from "dotenv";
 
 config();

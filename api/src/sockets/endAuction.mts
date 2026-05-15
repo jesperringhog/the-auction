@@ -1,5 +1,5 @@
 import { io } from "../index.mjs";
-import Auction from "../models/AuctionModel.mjs";
+import Auction from "../models/auctionModel.mjs";
 
 export const lookForEndedAuctions = () => {
   setInterval(async () => {

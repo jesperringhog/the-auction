@@ -1,5 +1,5 @@
 import type { Socket } from "socket.io";
-import Auction from "../models/AuctionModel.mjs";
+import Auction from "../models/auctionModel.mjs";
 
 export const initJoinAuction = (socket: Socket) => {
   socket.on("joinAuction", async (auctionId: string) => {

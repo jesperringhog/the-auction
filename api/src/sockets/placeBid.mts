@@ -1,4 +1,4 @@
-import Auction, { type Bid } from "../models/AuctionModel.mjs";
+import Auction, { type Bid } from "../models/auctionModel.mjs";
 import jwt from "jsonwebtoken";
 import type { UserDto } from "../models/UserDto.mjs";
 import User from "../models/UserModel.mjs";

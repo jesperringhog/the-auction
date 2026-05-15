@@ -1,6 +1,6 @@
 import express from "express";
-import { createUser } from "../controllers/registerController.mts";
-import type { RegisterRequest } from "../models/requests/registerRequest.mts";
+import { createUser } from "../controllers/registerController.mjs";
+import type { RegisterRequest } from "../models/requests/registerRequest.mjs";
 
 export const registerRouter = express.Router();
 

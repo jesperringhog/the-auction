@@ -1,7 +1,7 @@
-import { io } from "../index.mts";
-import Auction from "../models/auctionModel.mts";
-import type { AuctionRequest } from "../models/requests/auctionRequest.mts";
-import { type UserDbType } from "../models/UserModel.mts";
+import { io } from "../index.mjs";
+import Auction from "../models/auctionModel.mjs";
+import type { AuctionRequest } from "../models/requests/auctionRequest.mjs";
+import { type UserDbType } from "../models/UserModel.mjs";
 
 export const createAuction = async (req: AuctionRequest, user: UserDbType) => {
   const newAuction = await Auction.create({

@@ -5,16 +5,16 @@ import { config } from "dotenv";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
 import cookieParser from "cookie-parser";
-import { registerRouter } from "./routes/registerRouter.mts";
-import { loginRouter } from "./routes/loginRouter.mts";
-import { auctionRouter } from "./routes/auctionRouter.mts";
-import { auth } from "./middleware/auth.mts";
+import { registerRouter } from "./routes/registerRouter.mjs";
+import { loginRouter } from "./routes/loginRouter.mjs";
+import { auctionRouter } from "./routes/auctionRouter.mjs";
+import { auth } from "./middleware/auth.mjs";
 import cookie from "cookie";
-import { lookForEndedAuctions } from "./sockets/endAuction.mts";
-import { initJoinAuction } from "./sockets/joinAuction.mts";
-import { sendAllAuctions } from "./sockets/sendAllAuctions.mts";
-import { initPlaceBid } from "./sockets/placeBid.mts";
-import { logoutRouter } from "./routes/logoutRouter.mts";
+import { lookForEndedAuctions } from "./sockets/endAuction.mjs";
+import { initJoinAuction } from "./sockets/joinAuction.mjs";
+import { sendAllAuctions } from "./sockets/sendAllAuctions.mjs";
+import { initPlaceBid } from "./sockets/placeBid.mjs";
+import { logoutRouter } from "./routes/logoutRouter.mjs";
 
 config();
 
