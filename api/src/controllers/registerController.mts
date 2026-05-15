@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import type { RegisterRequest } from "../models/requests/registerRequest.mjs";
-import User, { convertToDto } from "../models/UserModel.mjs";
+import type { RegisterRequest } from "../models/requests/registerRequest.mts";
+import User, { convertToDto } from "../models/UserModel.mts";
 
 export const createUser = async (request: RegisterRequest) => {
   const salt = await bcrypt.genSalt();

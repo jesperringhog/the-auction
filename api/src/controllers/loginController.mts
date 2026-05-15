@@ -1,6 +1,6 @@
-import User, { convertToDto } from "../models/UserModel.mjs";
+import User, { convertToDto } from "../models/UserModel.mts";
 import bcrypt from "bcryptjs";
-import type { LoginRequest } from "../models/requests/loginRequest.mjs";
+import type { LoginRequest } from "../models/requests/loginRequest.mts";
 
 export const loginUser = async (req: LoginRequest) => {
   const foundUser = await User.findOne({ email: req.email });

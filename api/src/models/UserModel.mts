@@ -1,5 +1,5 @@
 import { model, Schema, Types, type InferSchemaType } from "mongoose";
-import type { UserDto } from "./UserDto.mjs";
+import type { UserDto } from "./UserDto.mts";
 
 export const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
