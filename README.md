@@ -30,7 +30,10 @@ Frontend
 - SCSS
 - HTML
 
-Deployment
+Deployment:
+Backend
+- Render
+Frontend
 - Vercel
 
 ## My Contributions

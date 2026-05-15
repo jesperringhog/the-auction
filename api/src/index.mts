@@ -18,9 +18,9 @@ import { logoutRouter } from "./routes/logoutRouter.mjs";
 
 config();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const mongoUri = process.env.MONGO_URI;
-const frontendUrl = process.env.FRONTEND_URL;
+const frontendUrl = process.env.CLIENT_URL;
 
 if (!port)
   throw new Error("PORT does not exist in .env, or it's value is invalid");
@@ -28,7 +28,7 @@ if (!mongoUri)
   throw new Error("MONGO_URI does not exist in .env, or it's value is invalid");
 if (!frontendUrl)
   throw new Error(
-    "FRONTEND_URL does not exist in .env, or it's value is invalid",
+    "CLIENT_URL does not exist in .env, or it's value is invalid",
   );
 
 const app = express();

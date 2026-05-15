@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "npx tsx watch src/index.mts"
+    "dev": "npx tsx watch src/index.mts",
+    "start": "npx tsx src/index.mts"
   },
   "type": "module",
   "dependencies": {

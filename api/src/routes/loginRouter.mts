@@ -27,7 +27,7 @@ loginRouter.post("/", async (req, res) => {
       res.cookie("login", token, {
         expires,
         sameSite: "lax", 
-        secure: false, 
+        secure: true, 
         httpOnly: true,
       });
 
