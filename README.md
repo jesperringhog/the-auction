@@ -45,6 +45,7 @@ The workload was shared fairly evenly across the team, but my main responsibilit
 - Building and rendering auction-related UI components in TypeScript
 - Completing and refining the bid placement functionality
 - Handling frontend/backend communication for live bidding updates
+- Deploying the frontend to Vercel and the backend to Render
 - Debugging and fixing issues across both frontend and backend
 
 ## Installation
@@ -88,6 +89,8 @@ npm run dev
 - Managing shared state and live updates across clients
 - Debugging asynchronous features and event-driven flows
 - Building scalable Express route structures
+- Deploying and configuring full-stack applications across separate hosting platforms
+- Handling environment variables, CORS configuration, and WebSocket connections in production environments
 
 ## Future Improvements
 
