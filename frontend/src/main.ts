@@ -39,7 +39,7 @@ document
 
 updateAuthUI();
 
-export const socket = io(import.meta.env.API_URL, { withCredentials: true });
+export const socket = io(import.meta.env.VITE_API_URL, { withCredentials: true });
 
 const auctionState: AuctionState = { selectedAuction: "", auctions: [] };
 
