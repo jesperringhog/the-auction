@@ -27,9 +27,7 @@ if (!port)
 if (!mongoUri)
   throw new Error("MONGO_URI does not exist in .env, or it's value is invalid");
 if (!frontendUrl)
-  throw new Error(
-    "CLIENT_URL does not exist in .env, or it's value is invalid",
-  );
+  throw new Error("CLIENT_URL does not exist in .env, or it's value is invalid");
 
 const app = express();
 
@@ -76,7 +74,7 @@ io.on("connection", async (socket) => {
 
 server.listen(port, async () => {
   try {
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri!);
   } catch (error) {
     console.error(error);
   }

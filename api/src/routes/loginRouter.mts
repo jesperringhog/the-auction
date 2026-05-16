@@ -2,6 +2,13 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import type { LoginRequest } from "../models/requests/loginRequest.mjs";
 import { loginUser } from "../controllers/loginController.mjs";
+import { config } from "dotenv";
+
+config();
+
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret)
+  throw new Error("JWT_SECRET does not exist in .env, or it's value is invalid");
 
 export const loginRouter = express.Router();
 
@@ -20,13 +27,13 @@ loginRouter.post("/", async (req, res) => {
     const userDto = await loginUser({ email, password });
 
     if (userDto) {
-      const token = jwt.sign(userDto, "login");
+      const token = jwt.sign(userDto, jwtSecret);
       const expires = new Date();
       expires.setHours(expires.getHours() + 1);
 
       res.cookie("login", token, {
         expires,
-        sameSite: "lax", 
+        sameSite: "none", 
         secure: true, 
         httpOnly: true,
       });
